@@ -1,13 +1,13 @@
 #header {
-     background:url('images/background.jpg');
-     height: 100vh;
-     background-repeat:no-repeat;
+    background:url('images/background.jpg');
+    height: 100%;
+    background-repeat:no-repeat;
 
-     background-color: transparent;
-     background-attachment: fixed;
+    background-color: transparent;
+    background-attachment: fixed;
 }
 .heading {
-    padding: 200px;
+    padding: 15%;
     text-align: center;
 }
 .hr1 {
@@ -15,7 +15,7 @@
 }
 img {
     float: center;
-    margin-top: 50px;
+    margin-top: 5%;
 }
 .box {
     position: absolute;
@@ -82,48 +82,44 @@ navbar-toggler {
     color: #fff;
     font-size: 25px;
 }
-.social-icons {
-    top: 50%;
-    transform: translateY(-50%);
-    position: sticky;
-    z-index: 1;
-    width: 80px;
-}
-.social-icons ul li {
-    height: 40px;
-    width: 40px;
-    list-style-type: none;
-    padding-left: 12px;
-    padding-top: 6px;
-    margin-top: 5px;
-    color: #fff;
-    background: #000;
-}
-.social-icons ul li:hover {
-    padding-left: 30px;
-    width: 80px;
-    transition: 0.8s;
-
-}
-.social-icons ul {
-    padding: initial;
-}
 .profile {
-    padding-top: 10px;
-    margin-bottom: -170px;
+    padding-top: 2%;
 }
 .profile-image {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     position: relative;
     border: 5px solid #FEDE00;
 }
-.name {
-    padding: 120px 0 0;
+.profile-icons {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.profile-detail {
+    display: flex;
+    margin-top: -15px;
+}
+.profile-detail div {
+    padding-left: 10px;
+    padding-top: 28px;
+    font-size: large;
+    font-weight: bold;
 }
 .summary {
-    padding: 30px 20px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+ul.summary {
+    list-style: circle;
+    list-style-position: outside;
+}
+ul.summary li{
+    margin-top: 2%;
+}
+ul.summary li:first-child {
+    margin-top:0;
 }
 .profile {
     background: #E0E0E0;
@@ -135,7 +131,7 @@ navbar-toggler {
 }
 .sub-head {
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 0.5%;
 }
 .sub-head1 {
     margin: 10px 0;
@@ -146,24 +142,32 @@ navbar-toggler {
     padding-top: 30px;
 }
 .com_name {
-    padding-top: 25px;
+    padding-top: 2%;
     text-align: center;
 }
-.desig {
-    padding-top: 25px;
+
+.com_name h6{
+    font-style: italic;
 }
 
-.bullet {
-    align: left;
-    type: disc;
-    margin: 0 25px;
-    padding: 0;
-    text-align: left;
+.desig {
+    padding-top: 2%;
+}
+
+.desig h5{
+    font-weight: bold;
 }
 .skills {
     background: #E0E0E0;
-    margin-top: 10px;
-    padding-bottom: 30px;
+}
+.word_cloud {
+    position: relative;
+    text-align: center;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: block;
+    margin-top: -4%;
 }
 .main {
     width: 350px;
@@ -179,22 +183,21 @@ navbar-toggler {
     width: 750px;
 }
 .certifications {
-    margin-top: -20px;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 3%;
 }
 .certi {
     text-align: left;
-    padding-left: 200px;
-    padding-top: 20px;
+    padding-left: 15%;
+    padding-top: 1%;
     font-size: 20px;
 }
 .education {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 .timeline {
-    padding-left: 390px;
+    padding-left: 40%;
     list-style-type: none;
     position: relative;
 }
@@ -202,16 +205,15 @@ navbar-toggler {
     content: '';
     display: inline-block;
     background: #000;
-    margin-left: 330px;
+    margin-left: -4.3%;
     position: absolute;
-    left: 29px;
     width: 2px;
     height: 100%;
     z-index: 1;
 }
 .timeline li h4 {
     background-color: #000;
-    margin-right: 380px;
+    margin-right: 60%;
     padding: 5px 0 5px 20px;
     column-rule-color: #fff;
     font-size: 15px;
@@ -225,7 +227,7 @@ navbar-toggler {
     position: absolute;
     border-radius: 50%;
     border: 3px solid #000;
-    left: 350px;
+    margin-left: -5%;
     width: 20px;
     height: 20px;
     z-index: 1;
