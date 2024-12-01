@@ -1,405 +1,58 @@
-<!DOCTYPE>
-<meta name="profile" content="width=device-width, initial-scale=1">
-<html>
-<head>
-    <title>Sumanth Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-</head>
-<body>
-<section id="header">
-    <div class="heading">
-        <h1><i><b>SUMANTHA.N.T.S</b></i></h1><hr class="hr1">
-        <h4>Data Scientist</h4>
-    </div>
-    <div class="box">
-        <div>
-            <a href="#profile"><span></span><span></span><span></span></a>
-        </div>
-    </div>
-</section>
-<section class="user-info">
-    <div class="nav-bar">
-        <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand"></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-              </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#profile">PROFILE</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#experience">EXPERIENCE</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#skills">SKILLS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#certificates">CERTIFICATIONS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#projects">PROJECTS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#education">EDUCATION</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">CONTACT</a>
-              </li>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio - Sumantha</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tailwind.config.js"></script>
+    </head>
+    <body>
+        <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
+            <img src="./images/Logo.png" alt="" class="w-52 cursor-pointer mr-10 h-full -mt-20 -mb-20">
+            <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50">
+                <li><a href="#top">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#project">Projects</a></li>
+                <li><a href="#contact">Contact Me</a></li>
             </ul>
-          </div>
+
+            <div class="flex items-center gap-4">
+            <button><img src="./images/moon.png" alt="" class="w-6"></button>
+            <a href="#contact" class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4">Contact
+                <img src="./images/up-right-arrow.png" alt="" width="20" height="20">
+            </a>
+            </div>
+
+            <button class="block md:hidden ml-3" onclick="openMenu()"><img src="./images/menu.png" alt="" class="w-10"></button>
+
+            <!-------------------mobile menu--------------------->
+            <ul id="sideMenu" class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 ">
+                <div class="absolute top-5 right-5">
+                    <img src="./images/close.png" alt="" class="w-5 cursor-pointer" onclick="closeMenu()">
+                </div>
+                
+                <li><a href="#top" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About Me</a></li>
+                <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+                <li><a href="#project" onclick="closeMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact Me</a></li>
+            </ul>
         </nav>
-    </div>
 
-
-    <div class="profile" id="profile">
-        <h2 class="sub-head"><i><u>My Profile:</u></i></h2>
-        <div class="profile container">
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <img src="images/Photo1.jpg" class="profile-image">
-                </div>
-                <div class="col-md-6">
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/name icon.png">
-                        <div>SUMANTHA.NTS</div>
-                    </div>
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/location icon.png">
-                        <div>Bengaluru, Karnataka</div>
-                    </div>
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/linkedin icon.png">
-                        <div><a href="https://www.linkedin.com/in/sumantha-nts/">
-                            sumantha-nts
-                        </a></div>
-                    </div>
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/github icon.png">
-                        <div><a href="https://github.com/sumantha-NTS">
-                            sumantha-NTS
-                        </a></div>
-                    </div>
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/instagram icon.png">
-                        <div><a href="https://www.instagram.com/sumanth_neechadi/">
-                            sumanth_neechadi
-                        </a></div>
-                    </div>
-                    <div class="profile-detail">
-                        <img class="profile-icons" src="images/medium icon.png">
-                        <div><a href="https://medium.com/@sumanthneechadi">
-                            Sumantha.NTS
-                        </a></div>
-                    </div>
-                </div>
-            </div>
-            <ul class="summary">
-                <li>
-                    An exuberant and accomplished data science engineer having <b>2+ years</b> of experience, passionate about cutting-edge technologies, and skilled in developing scalable solutions to a wide range of data science problems, specializing in <b>Machine Learning algorithms, Computer Vision and NLP.</b>
-                </li>
-                <li>
-                    Have a good understanding of the end-to-end life cycle of Data science projects. Worked extensively on <b>DVC</b> to track ML models and create pipelines. Have experience in training and optimization of object detection and NLP models on servers with GPU.
-                </li>
-                <li>
-                    Have extensive experience in annotation, preprocessing the text data and training names entity recognition(NER) models in servers.
-                </li>
-                <li>
-                    Theoretical and practical knowledge of <b>MLops</b> CI CD pipeline in Azure Cloud.
-                </li>
-            </ul>
+        <!-------------------header section--------------------->
+        <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+            <img src="./images/cropped-profile.jpg" alt="" class="rounded-full w-32">
+            <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3">Hi! I'm Sumantha NTS</h3>
+            <h1 class="text-3xl sm:text-6xl lg:text-[66px]">AI/ML Enthusiast based in India</h1>
+            <p class="max-w-2xl mx-auto">
+                I am currently working as a <b>Data Scientist-3</b> with <b>3+ years</b> experience in handling data science, machine learning, computer vision and NLP projects.
+            </p>
         </div>
-    </div>
-
-    <div class="exp" id="experience">
-        <div class="container">
-        <h2 class="sub-head"><i><u>My Experience:</u></i></h2>
-
-        <div class="row">
-            <div class="col-md-6 com_name">
-                <a href="https://www.wowlabz.com/"><h4>WowLabz</h4></a>
-                <h6>Jan 2022 - Present</h6>
-            </div>
-            <div class="col-md-6 desig">
-                <h5>Data Scientist</h5>
-                <ul>
-                    <li>
-                        Built stable and maintainable codebases using git to develop python package and FastAPI backend which implements named-entity recognition(NER) pipeline to extract relevant information from unstructured text into predefined entities.
-                    </li>
-                    <li>
-                        Training and optimization of YOLOV5 object detection algorithm on a custom dataset.
-                    </li>
-                    <li>
-                        Integrated DVC to track the models and to create pipelines to run stages of model training.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 com_name">
-                <a href="https://www.wowlabz.com/"><h4>WowLabz</h4></a>
-                <h6>Aug 2021 - Jan 2022</h6>
-            </div>
-            <div class="col-md-6 desig">
-                <h5>Data Science Intern</h5>
-                <ul>
-                    <li>
-                        Implemented Azure MLOps pipeline which include model building, unit tests, continuous Development
-                        and continuous deployment pipelines.
-                    </li>
-                    <li>
-                        Worked on Name Entity Recognition(NER) project from scratch using scipy module. Data annotation is 
-                        carried on doccano tool which is required for training custom
-                        NER model. 
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 com_name">
-                <a href="https://innodatatics.ai/"><h4>Innodatatics</h4></a>
-                <h6>Jan 2021 - July 2021</h6>
-            </div>
-            <div class="col-md-6 desig">
-                <h5>Data Scientist Intern</h5>
-                <ul>
-                    <li>
-                        Implemented the machine learning project on Inventory management system using XG Boost
-                        algorithm which gives high r2 score and developed the web API in Flask framework and
-                        deployed the model in Heroku platform.
-                    </li>
-                    <li>
-                        Implemented the time series forecasting project to forecast the particulate matter
-                        for next 24hours using SARIMA which gives less RMSE score and developed the web API in
-                        streamlit frameworks and deployed the model in Heroku platform.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 com_name">
-                <a href="http://www.prdcinfotech.com/"><h4>Power Research & Development Consultants</h4></a>
-                <h6>Aug 2018 - July 2021</h6>
-            </div>
-            <div class="col-md-6 desig">
-                <h5>Power System Engineer</h5>
-                <ul>
-                    <li>
-                        Responsible for performing power system studies like load flow analysis, short circuit studies,
-                        transient stability studies, relay co- ordination and grid islanding studies.
-                    </li>
-                    <li>
-                        Performed three phase unbalanced load flow study on Tata Power Network.
-                    </li>
-                </ul>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="skills" id="skills">
-        <div class="container">
-            <h3 class="sub-head2"><i><u>My Skills:</u></i></h3>
-            <img class="word_cloud" src="images/wordcloud.svg">
-        </div>
-    </div><br><br>
-
-    <div class="certifications" id="certificates">
-        <div class="container">
-            <h3><u><i>My Certifications:</i></u></h3>
-            <div class="certi">
-                <ul>
-                    <li>
-                        <a><b>“Data Science Using Machine Learning with Python & R”</b> from IBM</a>
-                    </li><br>
-                    <li>
-                        <a><b>“Data Science Certification”</b> from Excelr Solutions</a>
-                    </li><br>
-                    <li>
-                        <a><b>“Python for Data Science”</b> from IIT Madras</a>
-                    </li><br>
-                    <li>
-                        <a><b>“Introduction to Machine Learning”</b> from IIT Madras</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="projects" id="projects">
-        <div class="container">
-            <h3><u><i>My Projects:</i></u></h3>
-            <div class="row">
-                <div class="main">
-                    <ol start="1">
-                        <li>Crop Recommendation</li>
-                    </ol>
-                </div>
-                <div class="side">
-                    <ul>
-                        <li>
-                            The project objective is to recommend the crops based on soil, type, temperature and humidity.
-                        </li>
-                        <li>
-                            The dataset is trained with different classification algorithms and Random Forest algorithm
-                            is selected to build the API as it yield highest accuracy of 99%.
-                        </li>
-                        <li>
-                            The predictive model is deployed in Heroku and Google Cloud platforms using Streamlit and Flask library.
-                        </li>
-                        <li>
-                            Git-hub link for this project: <a href="https://github.com/sumantha-NTS/Crop-Recommendation.git">
-                            https://github.com/sumantha-NTS/Crop-Recommendation.git</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="main">
-                    <ol start="2">
-                        <li>Wine Quality Prediction</li></ol>
-                </div>
-                <div class="side">
-                    <ul>
-                        <li>
-                            The project objective is to predict the quality of wine.
-                        </li>
-                        <li>
-                            The dataset is trained with different regression algorithms and XGBoost algorithm is selected
-                            to build the API as it yield highest Accuracy.
-                        </li>
-                        <li>
-                            The predictive model is deployed in Heroku platform using Flask framework.
-                        </li>
-                        <li>
-                            Git-hub link for this project: <a href="https://github.com/sumantha-NTS/Wine-Quality-Prediction.git">
-                            https://github.com/sumantha-NTS/Wine-Quality-Prediction.git</a>
-                        </li>
-                        <li>
-                            For detailed explaination my blog link is given here <a href="https://sumanthneechadi.medium.com/wine-quality-prediction-2124ea507728">
-                            Blog</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="main">
-                    <ol start="3">
-                        <li>Predicting new House prices in Bengaluru</li></ol>
-                </div>
-                <div class="side">
-                    <ul>
-                        <li>
-                            The project objective is to predict the new house prices in Bengaluru based on location, total sqft etc.
-                        </li>
-                        <li>
-                            The dataset is trained with different regression algorithms and XGBoost algorithm is selected
-                            to build the API as it yield highest R2 value.
-                        </li>
-                        <li>
-                            The predictive model is deployed in Heroku platform using Streamlit library.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="main">
-                    <ol start="4">
-                        <li>Spam Classifier</li></ol>
-                </div>
-                <div class="side">
-                    <ul>
-                        <li>
-                            The project objective is to classify the message into Spam or Not spam.
-                        </li>
-                        <li>
-                            Text preprocessing is carried out on dataset and Naive Bayes  algorithm is used to classify
-                            the message into Spam or Not spam.
-                        </li>
-                        <li>
-                            Model is deployed in Heroku platform using flask library.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<div class="education" id="education">
-    <div class="container">
-        <h3 style="text-align: center;"><u><i>My Education:</i></u></h3>
-        <ul class="timeline">
-            <li>
-                <p>
-                    <h4>2018 - Bachelor of Engineering</h4>
-                    <b>Institute</b> - R N S Institute of Technology<br>
-                    <b>Stream</b> - Electrical & Electronics Engineering<br>
-                    <b>Duration</b> - [2014-2018]<br>
-                    <b>Aggregate</b> - 80.10%<br>
-                    <b>Location</b> - Bengaluru, Karnataka
-                </p>
-            </li>
-            <li>
-                <p>
-                    <h4>2014 - Intermediate</h4>
-                    <b>Institute</b> - Govt. PU college<br>
-                    <b>Stream</b> - Science<br>
-                    <b>Duration</b> - [2012-2014]<br>
-                    <b>Aggregate</b> - 88.00%<br>
-                    <b>Location</b> - Sagar, Karnataka
-                </p>
-            </li>
-            <li>
-                <p>
-                    <h4>2012 - High School</h4>
-                    <b>Institute</b> - M G N Pai High School<br>
-                    <b>Duration</b> - [2010-2012]<br>
-                    <b>Aggregate</b> - 78.40%<br>
-                    <b>Location</b> - Sagar, Karnataka
-                </p>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="contact" id="contact">
-    <div class="container text-center">
-        <h3><u><i>CONTACT ME</i></u></h3>
-        <div class="row">
-            <div class="col-md-6">
-                <i class="fa fa-phone"></i>
-                <p>+91 9035697661</p>
-            </div>
-            <div class="col-md-6">
-                <i class="fa fa-envelope"></i>
-                <p>sumanthneechadi@gmail.com</p>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>
-            <a href="Document/Sumanth_Resume.pdf" class="resume"><b>Resume</b></a>
-        </button>
-    </div>
-    <div class="footer">
-        <p>Copyrights <i class="far fa-copyright"></i> 2023 | <b>Sumantha.NTS</b></p>
-    </div>
-</div>
-</section>
-
-
-<script src="smooth-scroll.js"></script>
-<script>
-	var scroll = new SmoothScroll('a[href*="#"]');
-</script>
-
-</body>
+        <script src="./script.js"></script>
+    </body>
 </html>
