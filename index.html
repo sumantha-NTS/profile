@@ -4,10 +4,99 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Portfolio - Sumantha</title>
+        <title>Sumantha - AI Enthusiast</title>
         <link rel="icon" type="image/x-icon" href="./images/programmer.png">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="tailwind.config.js"></script>
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- AOS Animation Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+        <style>
+            .card {
+            perspective: 1500px;
+            height: 400px;
+            }
+            
+            .card-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            }
+            
+            .card:hover .card-inner {
+            transform: rotateY(180deg);
+            }
+            
+            .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            }
+            
+            .card-back {
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            }
+            
+            /* Custom scrollbar for the back of the card */
+            .card-back::-webkit-scrollbar {
+            width: 4px;
+            }
+            
+            .card-back::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 4px;
+            }
+            
+            .card-back::-webkit-scrollbar-track {
+            background: transparent;
+            }
+            
+            /* Skill badge pulse animation */
+            .skill-badge {
+            position: relative;
+            }
+            
+            .skill-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            animation: pulse 2s infinite;
+            opacity: 0;
+            }
+            
+            @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+                opacity: 0.7;
+            }
+            
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+                opacity: 0;
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+                opacity: 0;
+            }
+            }
+        </style>
     </head>
     <body>
         <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
@@ -47,7 +136,7 @@
 
         <!-------------------header section--------------------->
         <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
-            <img src="./images/cropped-profile.jpg" alt="" class="rounded-full w-32">
+            <img src="./images/cropped-profile.jpg" alt="" class="rounded-full w-52">
             <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3">Hi! I'm Sumantha NTS<img src="./images/wave.png" alt="" class="w-8"></h3>
             <h1 class="text-3xl sm:text-6xl lg:text-[66px]">AI/ML Enthusiast based in India</h1>
             <p class="max-w-2xl mx-auto">
@@ -297,7 +386,445 @@
         <div id="project" class="w-full px-[12%] py-10">
             <h4 class="text-center mb-2 text-lg">Projects</h4>
             <h2 class="text-center text-5xl">My Projects</h2>
+        
+
+        <!-- Category Tabs -->
+        <div class="flex justify-center mb-12 overflow-x-auto py-2" data-aos="fade-up" data-aos-delay="100">
+            <div class="inline-flex bg-gray-100 rounded-lg p-1 shadow-sm">
+            <button class="category-btn active px-4 py-2 rounded-md bg-white text-blue-600 shadow font-medium transition-all" data-category="all">All Projects</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="legal">Legal AI</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="finance">Finance</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="hr">HR Tech</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="cv">Computer Vision</button>
+            </div>
         </div>
+        
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project 1 - Legal Clause Identification -->
+            <div class="card project-card" data-category="legal" data-aos="fade-up" data-aos-delay="150">
+            <div class="card-inner shadow-lg">
+                <!-- Card Front -->
+                <div class="card-front bg-white p-6 flex flex-col">
+                <div class="bg-blue-50 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-balance-scale text-xl"></i>
+                </div>
+                <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Legal Clause Identification</h3>
+                <p class="text-gray-600 mb-4 flex-grow">
+                    Generated synthetic data using various strategies with large language models (LLMs) and fine-tuned a BERT model for classification tasks in the legal domain.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-brain mr-1"></i> LLM
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                    <div class="text-green-600 font-semibold text-sm mr-2">92% Accuracy</div>
+                    <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full w-[92%] bg-green-500 rounded-full"></div>
+                    </div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                </div>
+                </div>
+                
+                <!-- Card Back -->
+                <div class="card-back bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Legal Clause Identification</h3>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-100">Tech Stack:</h4>
+                    <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-brain mr-1"></i> LLM
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-docker mr-1"></i> Docker
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-language mr-1"></i> NLP
+                    </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-100">Highlights:</h4>
+                    <ul class="space-y-2 text-sm">
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Generated synthetic data using various strategies with large language models (LLMs) and fine-tuned a <strong>BERT</strong> model for classification tasks in the legal domain.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Created a pipeline which uses 3 stages of LLMs to validate the clauses present in the contracts. Successfully achieved a 92% accuracy in identifying legal clauses.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Deployed the pipeline on <strong>FastAPI</strong> and <strong>Docker</strong> for easy accessibility and scalability.</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="mt-auto">
+                    <div class="flex items-center">
+                    <div class="h-2 w-20 bg-white/20 rounded-full mr-3">
+                        <div class="h-full w-[92%] bg-green-400 rounded-full"></div>
+                    </div>
+                    <span class="text-green-300 font-medium text-sm">92% Accuracy</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Project 2 - Contract Overview -->
+            <div class="card project-card" data-category="legal" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-inner shadow-lg">
+                <!-- Card Front -->
+                <div class="card-front bg-white p-6 flex flex-col">
+                <div class="bg-blue-50 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-file-contract text-xl"></i>
+                </div>
+                <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Contract Overview</h3>
+                <p class="text-gray-600 mb-4 flex-grow">
+                    Created a process which automatically generates a overview for a given contract which include complete summary, responsibilities, risk associated with the parties.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-brain mr-1"></i> LLM
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="invisible">
+                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                </div>
+                </div>
+                
+                <!-- Card Back -->
+                <div class="card-back bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Contract Overview</h3>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-100">Tech Stack:</h4>
+                    <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-brain mr-1"></i> LLM
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-docker mr-1"></i> Docker
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-users mr-1"></i> CrewAI
+                    </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-100">Highlights:</h4>
+                    <ul class="space-y-2 text-sm">
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Created a process which automatically generates an overview for contracts including complete summary, responsibilities, risk associated with the parties.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Implemented <strong>crew AI</strong> agents to collaborate in generating comprehensive contract overviews with specialized focus areas.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Wrapped the solution in a <strong>FastAPI</strong> endpoint and containerized with <strong>Docker</strong> for easy accessibility.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Collaborated with the legal team to understand requirements and validate results, ensuring the system meets real-world needs.</span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Project 3 - Financial Chatbot -->
+            <div class="card project-card" data-category="finance" data-aos="fade-up" data-aos-delay="250">
+            <div class="card-inner shadow-lg">
+                <!-- Card Front -->
+                <div class="card-front bg-white p-6 flex flex-col">
+                <div class="bg-green-50 text-green-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-robot text-xl"></i>
+                </div>
+                <span class="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full w-fit mb-2">Finance</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Chatbot for Financial Data</h3>
+                <p class="text-gray-600 mb-4 flex-grow">
+                    Developed an intelligent chatbot that analyzes and provides insights on financial data, helping users make informed decisions.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-chart-line mr-1"></i> Streamlit
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-database mr-1"></i> MySQL
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="invisible">
+                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                </div>
+                </div>
+                
+                <!-- Card Back -->
+                <div class="card-back bg-gradient-to-br from-green-600 to-emerald-700 p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Chatbot for Financial Data</h3>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-green-100">Tech Stack:</h4>
+                    <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-chart-line mr-1"></i> Streamlit
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-brain mr-1"></i> LLM
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-database mr-1"></i> MySQL
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-docker mr-1"></i> Docker
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-green-100">Highlights:</h4>
+                    <ul class="space-y-2 text-sm">
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Developed an intelligent chatbot interface using Streamlit that allows users to query financial data and receive insights in natural language.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Integrated MySQL database to store and retrieve financial information, with FastAPI providing backend services.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Implemented natural language processing capabilities to interpret complex financial queries and provide accurate responses.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Containerized the solution with Docker for consistent deployment across environments.</span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Project 4 - Resume Parsing -->
+            <div class="card project-card" data-category="hr" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-inner shadow-lg">
+                <!-- Card Front -->
+                <div class="card-front bg-white p-6 flex flex-col">
+                <div class="bg-purple-50 text-purple-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </div>
+                <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full w-fit mb-2">HR Tech</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Resume Parsing</h3>
+                <p class="text-gray-600 mb-4 flex-grow">
+                    Smart resume parser using YOLO v5 for section detection and NER models to extract structured information from resumes.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-eye mr-1"></i> YOLO v5
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                    <div class="text-green-600 font-semibold text-sm mr-2">90% Accuracy</div>
+                    <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full w-[90%] bg-green-500 rounded-full"></div>
+                    </div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                </div>
+                </div>
+                
+                <!-- Card Back -->
+                <div class="card-back bg-gradient-to-br from-purple-600 to-indigo-700 p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Resume Parsing</h3>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-purple-100">Tech Stack:</h4>
+                    <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-bolt mr-1"></i> FastAPI
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-eye mr-1"></i> YOLO v5
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-tag mr-1"></i> NER
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-docker mr-1"></i> Docker
+                    </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-purple-100">Highlights:</h4>
+                    <ul class="space-y-2 text-sm">
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Implemented a FastAPI package featuring <strong>YOLO v5</strong> for resume section detection and Named Entity Recognition (NER) models for detailed breakdown of experience and education sections.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Achieved <strong>90% accuracy</strong> on traditional resume formats and <strong>85% accuracy</strong> on sectioned resume formats, significantly reducing manual data entry for HR professionals.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Built a modular pipeline that first detects resume sections visually, then applies specialized NER models to extract structured data.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Containerized the solution with Docker for easy deployment and scalability across different environments.</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="mt-auto">
+                    <div class="flex items-center">
+                    <div class="h-2 w-20 bg-white/20 rounded-full mr-3">
+                        <div class="h-full w-[90%] bg-green-400 rounded-full"></div>
+                    </div>
+                    <span class="text-green-300 font-medium text-sm">90% Accuracy</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Project 5 - AI Image Editing -->
+            <div class="card project-card" data-category="cv" data-aos="fade-up" data-aos-delay="350">
+            <div class="card-inner shadow-lg">
+                <!-- Card Front -->
+                <div class="card-front bg-white p-6 flex flex-col">
+                <div class="bg-orange-50 text-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-paint-brush text-xl"></i>
+                </div>
+                <span class="text-xs font-semibold bg-orange-100 text-orange-800 px-2 py-1 rounded-full w-fit mb-2">Computer Vision</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">AI Image Editing Suite</h3>
+                <p class="text-gray-600 mb-4 flex-grow">
+                    Comprehensive image editing tools including background removal, upscaling, style transfer, and text-to-image generation with an intuitive interface.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-desktop mr-1"></i> Gradio
+                    </span>
+                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <i class="fas fa-brain mr-1"></i> Diffusion
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="invisible">
+                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    </div>
+                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                </div>
+                </div>
+                
+                <!-- Card Back -->
+                <div class="card-back bg-gradient-to-br from-orange-500 to-pink-600 p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">AI Image Editing Suite</h3>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-orange-100">Tech Stack:</h4>
+                    <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fab fa-python mr-1"></i> Python
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-desktop mr-1"></i> Gradio
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-brain mr-1"></i> Diffusion Models
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-random mr-1"></i> Transfer Learning
+                    </span>
+                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <i class="fas fa-eye mr-1"></i> Computer Vision
+                    </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-orange-100">Highlights:</h4>
+                    <ul class="space-y-2 text-sm">
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Created a comprehensive image editing application by integrating multiple open-source AI models for background removal, image upscaling, artistic style transfer, and text-to-image generation.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Developed an intuitive <strong>Gradio</strong> interface that allows users to easily upload images and apply sophisticated AI-powered transformations with minimal technical knowledge.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Implemented background removal with U2Net, super-resolution upscaling with ESRGAN, style transfer using AdaIN, and text-to-image generation with Stable Diffusion models.</span>
+                    </li>
+                    <li class="flex">
+                        <span class="mr-2">•</span>
+                        <span>Optimized the pipeline for efficiency, allowing multiple transformations to be applied sequentially while preserving image quality throughout the process.</span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div> 
+
 
         <!-------------------Footer section--------------------->
         <div class="text-center sm:flex justify-between border-t border-gray-500 items-center">
@@ -305,5 +832,58 @@
         </div>
 
         <script src="./script.js"></script>
+        <script>
+            // Initialize AOS animation library
+            document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out-cubic',
+                once: true
+            });
+            
+            // Filter functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                // Update active button
+                categoryBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'text-blue-600', 'shadow');
+                    b.classList.add('text-gray-600', 'hover:text-gray-900');
+                });
+                
+                btn.classList.add('active', 'bg-white', 'text-blue-600', 'shadow');
+                btn.classList.remove('text-gray-600', 'hover:text-gray-900');
+                
+                const category = btn.getAttribute('data-category');
+                
+                // Filter projects
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    } else {
+                    card.style.display = 'none';
+                    }
+                });
+                });
+            });
+            
+            // Animate skill badges
+            const skillBadges = document.querySelectorAll('.skill-badge');
+            
+            function animateRandomBadge() {
+                const randomBadge = skillBadges[Math.floor(Math.random() * skillBadges.length)];
+                randomBadge.classList.add('animate-pulse');
+                
+                setTimeout(() => {
+                randomBadge.classList.remove('animate-pulse');
+                }, 2000);
+            }
+            
+            // Animate a random badge every few seconds
+            setInterval(animateRandomBadge, 3000);
+            });
+        </script>
     </body>
 </html>
