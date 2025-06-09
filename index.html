@@ -222,161 +222,98 @@
         </div>
 
         <!-------------------experience section--------------------->
-        <div id="experience" class="w-full px-[12%] py-10">
-            <h4 class="text-center mb-2 text-lg">Where I've Worked</h4>
+        <section class="experience-section">
+            <h4 class="text-center mb-2 text-lg">Where I worked</h4>
             <h2 class="text-center text-5xl">My Experience</h2>
+            
+            <!-- Experience Section Container -->
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <!-- Timeline -->
+            <div class="relative max-w-3xl mx-auto">
+                <!-- The vertical line -->
+                <div class="absolute left-1/2 -ml-0.5 w-1 h-full bg-gray-200"></div>
 
-            <div class="border rounded border-gray-500 mt-10">
-                <!-- Aidetic experience -->
-                <div class="lg:flex">
-                    <div class="lg:w-1/4 flex flex-col items-center text-center justify-center mt-5 mb-5">
-                        <img src="./images/Aidetic-logo.jpg" alt="" class="w-48 rounded-3xl">
-                        <h2 class="text-3xl">Aidetic Pvt. Ltd.</h2>
-                        <p>(Dec-2023 - Present)</p>
-                    </div>
-    
-                    <div class="lg:w-3/4 mt-10 mb-5 mr-10 ml-10 lg:ml-0">
-                        <h2 class="text-2xl lg:text-3xl text-left">Data scientist-3</h2>
-                        <div class="mb-5 space-y-2">
-                            <p class="text-left text-xl underline">Project: Legal clause identification (Legal Domain)</p>
-                            <p>Tech-stack: Python, FastAPI, LLM, Docker, NLP</p>
-                            <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                <li>Generated synthetic data using various strategies with large language models (LLMs) and
-                                    fine-tuned a <b>BERT</b> model for classification tasks in the legal domain.
-                                </li>
-                                <li>
-                                    Created a pipeline which uses 3 stages of LLMs to validate the clauses present in the contracts. With the implementation BERT and the pipeline, Successfully achieved a 92% accuracy in identifying the legal clauses present in the contracts.
-                                </li>
-                                <li>
-                                    Deployed the pipeline on <b>FastAPI</b> and <b>Docker</b> for easy accessibility.
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Aidetic hidden projects -->
-                        <div id="aidetic-hidden" class="hidden">
-                            <div class="mb-5 space-y-2">
-                                 <p class="text-left text-xl underline">Project: Contract Overview (Legal domain)</p>
-                                 <p>Tech-stack: Python, FastAPI, LLM, Docker, NLP, CrewAI</p>
-                                 <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                     <li>
-                                         Created a process which automatically generates a overview for a given contract which include complete summary, responsibilities, risk associated with the parties, etc. Collaborated with the legal team to understand the requirements and to validate the results.
-                                     </li>
-                                     <li>
-                                         Implemented <b>crew AI</b> agents which helps in generating the overview for the contract.
-                                     </li>
-                                     <li>
-                                         Wrapped a <b>FastAPI</b> endpoint and <b>Docker</b> for easy accessibility.
-                                     </li>
-                                 </ul>
-                            </div>
-    
-                            <div class="mb-5 space-y-2">
-                                <p class="text-left text-xl underline">Project: Chatbot which fetches financial data (Finance domain)</p>
-                                <p>Tech-stack: Python, Streamlit, LLM, Docker, NLP, MySQL, FastAPI</p>
-                                <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                    <li>
-                                        Created a process which automatically generates a overview for a given contract which include complete summary, responsibilities, risk associated with the parties, etc. Collaborated with the legal team to understand the requirements and to validate the results.
-                                    </li>
-                                    <li>
-                                        Implemented <b>crew AI</b> agents which helps in generating the overview for the contract.
-                                    </li>
-                                    <li>
-                                        Wrapped a <b>FastAPI</b> endpoint and <b>Docker</b> for easy accessibility.
-                                    </li>
+                <!-- Timeline Item 1: Aidetic -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center">
+                        <!-- Content Card (Left on Desktop) -->
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                                <p class="text-sm font-medium text-indigo-600">Dec 2023 - Present</p>
+                                <h3 class="text-2xl font-bold mt-1 text-gray-900">Data Scientist-3</h3>
+                                <div class="flex items-center mt-2">
+                                    <a href="https://aidetic.in"><img src="./images/Aidetic-logo.jpg" alt="Aidetic Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
+                                    <p class="text-md font-semibold text-gray-700">Aidetic; Bengaluru</p>
+                                </div>
+                                <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
+                                    <li>Led development of a text-to-SQL MVP and a conversational chatbot for data-driven insights.</li>
+                                    <li>Fine-tuned multiple LLMs (BERT, DeepSeek) for specialized legal domain tasks, achieving high accuracy and performance comparable to GPT-4o.</li>
+                                    <li>Engineered and deployed an agentic workflow for automated report generation and a RAG system using CrewAI, FastAPI, and Qdrant.</li>
+                                    <li>Directed an object detection project using Yolo-v8 to identify vehicle defects with 92% mAP.</li>
                                 </ul>
-                           </div>
-                        </div>
-    
-                        <!-- View More button -->
-                        <div class="text-right -mt-5">
-                            <button id="toggle-button-1" class="bg-blue-500 text-white px-4 py-2 rounded">View More</button>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="border-t-2 border-gray-300">
-
-                <!-- wowlabz experience -->
-                <div class="lg:flex">
-                    <div class="lg:w-1/4 flex flex-col items-center text-center justify-center mt-5 mb-5">
-                        <img src="./images/wowlabz.png" alt="" class="w-48 rounded-3xl">
-                        <h2 class="text-3xl">Wowlabz Pvt. Ltd.</h2>
-                        <p>(Aug-2021 - Nov-2023)</p>
-                    </div>
-    
-                    <div class="lg:w-3/4 mt-10 mb-5 mr-10 ml-10 lg:ml-0">
-                        <h2 class="text-2xl lg:text-3xl text-left">Data scientist</h2>
-                        <div class="mb-5 space-y-2">
-                            <p class="text-left text-xl underline">Project: Legal clause identification (Legal Domain)</p>
-                            <p>Tech-stack: Python, FastAPI, LLM, Docker, NLP</p>
-                            <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                <li>Generated synthetic data using various strategies with large language models (LLMs) and
-                                    fine-tuned a <b>BERT</b> model for classification tasks in the legal domain.
-                                </li>
-                                <li>
-                                    Created a pipeline which uses 3 stages of LLMs to validate the clauses present in the contracts. With the implementation BERT and the pipeline, Successfully achieved a 92% accuracy in identifying the legal clauses present in the contracts.
-                                </li>
-                                <li>
-                                    Deployed the pipeline on <b>FastAPI</b> and <b>Docker</b> for easy accessibility.
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Wowlabz hidden projects -->
-                        <div id="wowlabz-hidden" class="hidden">
-                            <div class="mb-5 space-y-2">
-                                 <p class="text-left text-xl underline">Project: Contract Overview (Legal domain)</p>
-                                 <p>Tech-stack: Python, FastAPI, LLM, Docker, NLP, CrewAI</p>
-                                 <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                     <li>
-                                         Created a process which automatically generates a overview for a given contract which include complete summary, responsibilities, risk associated with the parties, etc. Collaborated with the legal team to understand the requirements and to validate the results.
-                                     </li>
-                                     <li>
-                                         Implemented <b>crew AI</b> agents which helps in generating the overview for the contract.
-                                     </li>
-                                     <li>
-                                         Wrapped a <b>FastAPI</b> endpoint and <b>Docker</b> for easy accessibility.
-                                     </li>
-                                 </ul>
                             </div>
                         </div>
-    
-                        <!-- View More button -->
-                        <div class="text-right -mt-5">
-                            <button id="toggle-button-2" class="bg-blue-500 text-white px-4 py-2 rounded">View More</button>
+                        <!-- Dot (Aligned with the line) -->
+                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0">
+                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
                         </div>
                     </div>
                 </div>
 
-                <hr class="border-t-2 border-gray-300">
-
-                <div class="lg:flex">
-                    <div class="lg:w-1/4 flex flex-col items-center text-center justify-center mt-5 mb-5">
-                        <img src="./images/PRDC-logo.jpg" alt="" class="w-48 rounded-3xl">
-                        <h2 class="text-3xl">PRDC Pvt. Ltd.</h2>
-                        <p>(Aug-2018 - Aug-2021)</p>
-                    </div>
-    
-                    <div class="lg:w-3/4 mt-10 mb-5 mr-10 ml-10 lg:ml-0">
-                        <h2 class="text-2xl lg:text-3xl text-left mb-5">Power system engineer</h2>
-                        <div class="mb-5 space-y-2">
-                            <ul class="list-disc pl-0 lg:pl-10 space-y-2 text-justify">
-                                <li>Roles and responsibilities was to conduct the load flow, short circuit, transient analysis and also the relay co-ordination for industrial power systems.
-                                </li>
-                                <li>
-                                    Visited multiple industrial power plant to interact with client and gather the necessary information to conduct the analysis and to generate the report.
-                                </li>
-                                <li>
-                                    Power system analysis is conducted using the <b>MiPower</b> software.
-                                </li>
+                <!-- Timeline Item 2: Wowlabz -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center flex-row-reverse">
+                        <!-- Content Card (Right on Desktop) -->
+                        <div class="md:w-1/2 md:pl-8">
+                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <p class="text-sm font-medium text-indigo-600">Aug 2021 - Nov 2023</p>
+                            <h3 class="text-2xl font-bold mt-1 text-gray-900">Data Scientist</h3>
+                            <div class="flex items-center mt-2">
+                                    <a href="https://wowlabz.com"><img src="./images/wowlabz.png" alt="Wowlabz Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
+                                    <p class="text-md font-semibold text-gray-700">Wowlabz; Bengaluru</p>
+                            </div>
+                            <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
+                                <li>Developed several LLM-powered tools to automate tasks like slide generation and resume parsing, significantly improving team efficiency.</li>
+                                <li>Conducted advanced experiments with generative image models, including fine-tuning Stable Diffusion and implementing ControlNet.</li>
+                                <li>Built and deployed a high-accuracy inventory forecasting system using XGBoost to predict stock levels.</li>
                             </ul>
+                            </div>
+                        </div>
+                        <!-- Dot (Aligned with the line) -->
+                        <div class="md:w-1/2 md:pr-8 mt-6 md:mt-0">
+                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- Timeline Item 3: PRDC -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center">
+                        <!-- Content Card (Left on Desktop) -->
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                                <p class="text-sm font-medium text-indigo-600">Aug 2018 – Jul 2021</p>
+                                <h3 class="text-2xl font-bold mt-1 text-gray-900">Power System Engineer</h3>
+                                <div class="flex items-center mt-2">
+                                    <a href="https://beta.prdcinfotech.com/"><img src="./images/PRDC-logo.jpg" alt="PRDC Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
+                                    <p class="text-md font-semibold text-gray-700">PRDC; Bengaluru</p>
+                                </div>
+                                <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
+                                    <li>Analyzed industrial power system networks, executing detailed power flow studies and delivering comprehensive technical reports to optimize grid performance and ensure reliability.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Dot (Aligned with the line) -->
+                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0">
+                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Timeline -->
+
+        </div> <!-- End Container -->
+        </section>
         <!-------------------Skills section--------------------->
         <div id="skills" class="w-full px-[12%] py-10">
             <h4 class="text-center mb-2 text-lg">What I Can Do</h4>
