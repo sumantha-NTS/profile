@@ -96,6 +96,111 @@
                 opacity: 0;
             }
             }
+            
+            /* Experience section style */
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+            * {
+                font-family: 'Inter', sans-serif;
+            }
+
+            .gradient-bg {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+
+            .card-hover {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .timeline-dot {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
+
+            .fade-in {
+                animation: fadeIn 0.6s ease-out forwards;
+                opacity: 0;
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .stagger-1 { animation-delay: 0.1s; }
+            .stagger-2 { animation-delay: 0.2s; }
+            .stagger-3 { animation-delay: 0.3s; }
+            .stagger-4 { animation-delay: 0.4s; } 
+
+            .skill-tag {
+                transition: all 0.3s ease;
+            }
+
+            .skill-tag:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            }
+
+            .scroll-container {
+                scrollbar-width: thin;
+                scrollbar-color: #667eea #f1f5f9;
+            }
+
+            .scroll-container::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .scroll-container::-webkit-scrollbar-track {
+                background: #f1f5f9;
+                border-radius: 10px;
+            }
+
+            .scroll-container::-webkit-scrollbar-thumb {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .experience-card {
+                    min-width: 100%;
+                }
+            }
+
+            /* Skills style */
+            .card-hover { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s; }
+            .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+
+            .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+            .progress-track { height: .5rem; border-radius: 999px; background: rgba(0,0,0,0.06); overflow: hidden; }
+            .progress-fill { height: .5rem; border-radius: 999px; transition: width .6s ease; }
+
+            .scroll-arrow { display: none; }
+            @media (min-width: 768px) { .scroll-arrow { display: flex; } }
+
+            .scroll-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.5rem; }
+            .scroll-dot {
+            width: 10px; height: 10px; border-radius: 9999px;
+            background: #cbd5e1; transition: all 0.3s ease;
+            }
+            .scroll-dot.active {
+            background: #2563eb; transform: scale(1.3);
+            }
         </style>
     </head>
     <body>
@@ -153,16 +258,26 @@
         </div>
         <!-------------------about section--------------------->
         <div id="about" class="w-full px-[12%]">
-            <h4 class="text-center mb-2 text-lg">Introduction</h4>
-            <h2 class="text-center text-5xl">About Me</h2>
-        
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block mb-4">
+                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                        Introduction
+                    </span>
+                </div>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                    About
+                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        Me
+                    </span>
+                </h2>
+            </div>        
 
             <div class="flex flex-col lg:flex-row items-center gap-20 my-20">
                 <div>
                     <img src="./images/Remove background project.jpeg" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
                     <!-- Row of icons -->
                     <div class="flex flex-row gap-5 mt-10 ml-4">
-                        <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/sumantha-NTS" target="_blank" rel="noopener noreferrer">
                             <img src="./images/github icon.png" alt="GitHub Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
                         </a>
                         <a href="https://linkedin.com/in/sumantha-nts" target="_blank" rel="noopener noreferrer">
@@ -171,7 +286,7 @@
                         <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer">
                             <img src="./images/instagram icon.png" alt="Instagram Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
                         </a>
-                        <a href="https://medium.com/@your-profile" target="_blank" rel="noopener noreferrer">
+                        <a href="https://medium.com/@sumanthneechadi" target="_blank" rel="noopener noreferrer">
                             <img src="./images/medium icon.png" alt="Medium Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
                         </a>
                     </div>
@@ -181,7 +296,7 @@
                 <div>
                     <ul class="mb-10 text-justify list-disc pl-2 space-y-5">
                         <li>
-                            A dynamic and self-driven data scientist with <b>3+ years</b> of experience, deeply passionate about leveraging 
+                            A dynamic and self-driven data scientist with <b>4+ years</b> of experience, deeply passionate about leveraging 
                             cutting-edge technologies. Proficient in designing scalable solutions for diverse data science challenges, 
                             with expertise in Machine Learning algorithms, Computer Vision, NLP, and Generative AI. Possesses a strong 
                             understanding of the end-to-end lifecycle of data science projects.
@@ -221,109 +336,355 @@
             </div>
         </div>
 
-        <!-------------------experience section--------------------->
-        <section class="experience-section">
-            <h4 class="text-center mb-2 text-lg">Where I worked</h4>
-            <h2 class="text-center text-5xl">My Experience</h2>
-            
-            <!-- Experience Section Container -->
-        <div class="container mx-auto px-4 py-16 md:py-24">
-            <!-- Timeline -->
-            <div class="relative max-w-3xl mx-auto">
-                <!-- The vertical line -->
-                <div class="absolute left-1/2 -ml-0.5 w-1 h-full bg-gray-200"></div>
+        <!-------------------Experience section--------------------->
+        <section class="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block mb-4">
+                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                        Career Journey
+                    </span>
+                </div>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                    Professional
+                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        Experience
+                    </span>
+                </h2>
+            </div>
 
-                <!-- Timeline Item 1: Aidetic -->
-                <div class="relative mb-12">
-                    <div class="md:flex items-center">
-                        <!-- Content Card (Left on Desktop) -->
-                        <div class="md:w-1/2 md:pr-8">
-                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                                <p class="text-sm font-medium text-indigo-600">Dec 2023 - Present</p>
-                                <h3 class="text-2xl font-bold mt-1 text-gray-900">Data Scientist-3</h3>
-                                <div class="flex items-center mt-2">
-                                    <a href="https://aidetic.in"><img src="./images/Aidetic-logo.jpg" alt="Aidetic Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
-                                    <p class="text-md font-semibold text-gray-700">Aidetic; Bengaluru</p>
+            <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <div class="text-3xl sm:text-4xl font-bold text-indigo-600 mb-2">7+</div>
+                    <div class="text-gray-600 font-medium">Years Experience</div>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <div class="text-3xl sm:text-4xl font-bold text-purple-600 mb-2">18+</div>
+                    <div class="text-gray-600 font-medium">Projects Delivered</div>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">4</div>
+                    <div class="text-gray-600 font-medium">Companies</div>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <div class="text-3xl sm:text-4xl font-bold text-green-600 mb-2">92%</div>
+                    <div class="text-gray-600 font-medium">Best Accuracy</div>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="relative">
+                
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indigo-200 via-purple-200 to-transparent"></div>
+
+                <div class="space-y-8 lg:space-y-16">
+
+                    <div class="fade-in stagger-1 lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                        <div class="hidden lg:block"></div>
+                        <div class="relative">
+                            <div class="hidden lg:block absolute -left-[4.5rem] top-8 w-4 h-4 bg-emerald-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
+                            
+                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
+                                
+                                <div class="relative z-10">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                                                Q
+                                            </div>
+                                            <div>
+                                                <h3 class="text-2xl font-bold text-gray-900">Senior MLE</h3>
+                                                <a href="https://quantiphi.com" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                    Quantiphi
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm">
+                                            <span class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-lg shadow-md">
+                                                Jun 2025 - Present
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center text-gray-600 mb-6">
+                                        <svg class="w-5 h-5 mr-2 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-medium">Bengaluru, India</span>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Spearheaded the development of a client-facing <span class="font-semibold text-gray-900">Finetuning as a Service (FTAAS)</span> platform, enabling the customization and deployment of open-source LLMs using LoRA/QLoRA and KubeFlow.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Acted as a key liaison between <span class="font-semibold text-gray-900">business units and technical teams</span>, translating complex problems into actionable AI-driven solutions.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Mentored and guided junior Machine Learning Engineers, fostering their professional development and maximizing team contribution.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 flex flex-wrap gap-2">
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">LLM</span>
+                                        <span class="skill-tag px-3 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-lg">LoRA</span>
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">QLoRA</span>
+                                        <span class="skill-tag px-3 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-lg">KubeFlow</span>
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">Nemo-customizer</span>
+                                    </div>
                                 </div>
-                                <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
-                                    <li>Led development of a text-to-SQL MVP and a conversational chatbot for data-driven insights.</li>
-                                    <li>Fine-tuned multiple LLMs (BERT, DeepSeek) for specialized legal domain tasks, achieving high accuracy and performance comparable to GPT-4o.</li>
-                                    <li>Engineered and deployed an agentic workflow for automated report generation and a RAG system using CrewAI, FastAPI, and Qdrant.</li>
-                                    <li>Directed an object detection project using Yolo-v8 to identify vehicle defects with 92% mAP.</li>
-                                </ul>
                             </div>
-                        </div>
-                        <!-- Dot (Aligned with the line) -->
-                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0">
-                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="fade-in stagger-2 lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                        <div class="relative lg:text-right">
+                             <div class="hidden lg:block absolute -right-[4.5rem] top-8 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
+                            
+                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
+                                
+                                <div class="relative z-10">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                                                A
+                                            </div>
+                                            <div class="text-left">
+                                                <h3 class="text-2xl font-bold text-gray-900">Data Scientist-3</h3>
+                                                <a href="https://aidetic.in" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                    Aidetic
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm">
+                                            <span class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg shadow-md">
+                                                Dec 2023 - May 2025
+                                            </span>
+                                        </div>
+                                    </div>
 
-                <!-- Timeline Item 2: Wowlabz -->
-                <div class="relative mb-12">
-                    <div class="md:flex items-center flex-row-reverse">
-                        <!-- Content Card (Right on Desktop) -->
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                            <p class="text-sm font-medium text-indigo-600">Aug 2021 - Nov 2023</p>
-                            <h3 class="text-2xl font-bold mt-1 text-gray-900">Data Scientist</h3>
-                            <div class="flex items-center mt-2">
-                                    <a href="https://wowlabz.com"><img src="./images/wowlabz.png" alt="Wowlabz Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
-                                    <p class="text-md font-semibold text-gray-700">Wowlabz; Bengaluru</p>
-                            </div>
-                            <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
-                                <li>Developed several LLM-powered tools to automate tasks like slide generation and resume parsing, significantly improving team efficiency.</li>
-                                <li>Conducted advanced experiments with generative image models, including fine-tuning Stable Diffusion and implementing ControlNet.</li>
-                                <li>Built and deployed a high-accuracy inventory forecasting system using XGBoost to predict stock levels.</li>
-                            </ul>
-                            </div>
-                        </div>
-                        <!-- Dot (Aligned with the line) -->
-                        <div class="md:w-1/2 md:pr-8 mt-6 md:mt-0">
-                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="flex items-center text-gray-600 mb-6">
+                                        <svg class="w-5 h-5 mr-2 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-medium">Bengaluru, India</span>
+                                    </div>
 
-                <!-- Timeline Item 3: PRDC -->
-                <div class="relative mb-12">
-                    <div class="md:flex items-center">
-                        <!-- Content Card (Left on Desktop) -->
-                        <div class="md:w-1/2 md:pr-8">
-                            <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                                <p class="text-sm font-medium text-indigo-600">Aug 2018 – Jul 2021</p>
-                                <h3 class="text-2xl font-bold mt-1 text-gray-900">Power System Engineer</h3>
-                                <div class="flex items-center mt-2">
-                                    <a href="https://beta.prdcinfotech.com/"><img src="./images/PRDC-logo.jpg" alt="PRDC Company Logo" class="h-10 w-10 rounded-full mr-3 border-2 border-gray-200 object-cover"></a>
-                                    <p class="text-md font-semibold text-gray-700">PRDC; Bengaluru</p>
+                                    <div class="space-y-4 text-left">
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Led development of a <span class="font-semibold text-gray-900">text-to-SQL MVP</span> and a conversational chatbot for data-driven insights.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Fine-tuned multiple <span class="font-semibold text-gray-900">LLMs (BERT, DeepSeek)</span> for specialized legal domain tasks, achieving high accuracy.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Engineered and deployed an <span class="font-semibold text-gray-900">agentic workflow</span> for automated report generation using CrewAI, FastAPI, and Qdrant.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Directed an <span class="font-semibold text-gray-900">object detection project</span> using Yolo-v8 to identify vehicle defects with 92% mAP.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 flex flex-wrap gap-2">
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">LLMs</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">BERT</span>
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">DeepSeek</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">CrewAI</span>
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">Yolo-v8</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">FastAPI</span>
+                                    </div>
                                 </div>
-                                <ul class="mt-4 space-y-2 text-gray-600 list-disc list-inside accomplishments">
-                                    <li>Analyzed industrial power system networks, executing detailed power flow studies and delivering comprehensive technical reports to optimize grid performance and ensure reliability.</li>
-                                </ul>
                             </div>
                         </div>
-                        <!-- Dot (Aligned with the line) -->
-                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0">
-                            <div class="absolute left-1/2 -ml-2.5 w-5 h-5 bg-white border-4 border-indigo-500 rounded-full"></div>
+                        <div class="hidden lg:block"></div>
+                    </div>
+
+                    <div class="fade-in stagger-3 lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                        <div class="hidden lg:block"></div>
+                        <div class="relative">
+                            <div class="hidden lg:block absolute -left-[4.5rem] top-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
+                            
+                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
+                                
+                                <div class="relative z-10">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                                                W
+                                            </div>
+                                            <div>
+                                                <h3 class="text-2xl font-bold text-gray-900">Data Scientist</h3>
+                                                <a href="https://wowlabz.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                    Wowlabz
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm">
+                                            <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold rounded-lg shadow-md">
+                                                Aug 2021 - Nov 2023
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center text-gray-600 mb-6">
+                                        <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-medium">Bengaluru, India</span>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Developed several <span class="font-semibold text-gray-900">LLM-powered tools</span> to automate tasks like slide generation and resume parsing.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Conducted advanced experiments with <span class="font-semibold text-gray-900">generative image models</span>, including fine-tuning Stable Diffusion and implementing ControlNet.</p>
+                                        </div>
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Built and deployed a high-accuracy <span class="font-semibold text-gray-900">inventory forecasting system</span> using XGBoost to predict stock levels.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 flex flex-wrap gap-2">
+                                        <span class="skill-tag px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg">LLM Tools</span>
+                                        <span class="skill-tag px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">Stable Diffusion</span>
+                                        <span class="skill-tag px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg">ControlNet</span>
+                                        <span class="skill-tag px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">XGBoost</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="fade-in stagger-4 lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                         <div class="relative lg:text-right">
+                            <div class="hidden lg:block absolute -right-[4.5rem] top-8 w-4 h-4 bg-red-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
+                            
+                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-yellow-100 to-red-100 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
+                                
+                                <div class="relative z-10">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                                                P
+                                            </div>
+                                            <div class="text-left">
+                                                <h3 class="text-2xl font-bold text-gray-900">Power System Engineer</h3>
+                                                <a href="https://beta.prdcinfotech.com/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                    PRDC
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm">
+                                            <span class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-red-600 text-white font-semibold rounded-lg shadow-md">
+                                                Aug 2018 - Jul 2021
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center text-gray-600 mb-6">
+                                        <svg class="w-5 h-5 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-medium">Bengaluru, India</span>
+                                    </div>
+
+                                    <div class="space-y-4 text-left">
+                                        <div class="flex items-start gap-3 group">
+                                            <div class="mt-1 w-2 h-2 rounded-full bg-red-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+                                            <p class="text-gray-700 leading-relaxed">Analyzed <span class="font-semibold text-gray-900">industrial power system networks</span>, executing detailed power flow studies and delivering comprehensive technical reports to optimize grid performance and ensure reliability.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 flex flex-wrap gap-2">
+                                        <span class="skill-tag px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg">Power Systems</span>
+                                        <span class="skill-tag px-3 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-lg">Grid Analysis</span>
+                                        <span class="skill-tag px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg">Power Flow Studies</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden lg:block"></div>
+                    </div>
+
                 </div>
-
-            </div> <!-- End Timeline -->
-
-        </div> <!-- End Container -->
-        </section>
-        <!-------------------Skills section--------------------->
-        <div id="skills" class="w-full px-[12%] py-10">
-            <h4 class="text-center mb-2 text-lg">What I Can Do</h4>
-            <h2 class="text-center text-5xl">My Skills</h2>
+            </div>
         </div>
+        </section>
+
+        <!-------------------Skills section--------------------->
+        <section class="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <div class="inline-block mb-4">
+            <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">Competencies</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            Technical
+            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] bg-clip-text text-transparent"> Skills</span>
+            </h2>
+        </div>
+
+        <div class="relative">
+            <!-- Scroll Arrows -->
+            <button id="scrollLeft" aria-label="Scroll left"
+            class="scroll-arrow absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white rounded-full shadow-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            </button>
+            <button id="scrollRight" aria-label="Scroll right"
+            class="scroll-arrow absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white rounded-full shadow-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            </button>
+
+            <div id="skillsContainer" class="flex gap-6 overflow-x-auto hide-scrollbar pb-6 pt-2 snap-x snap-mandatory scroll-smooth"></div>
+
+            <div id="scrollDots" class="scroll-dots"></div>
+        </div>
+        </div>
+    </section>
         <!-------------------Project section--------------------->
         <div id="project" class="w-full px-[12%] py-10">
-            <h4 class="text-center mb-2 text-lg">Projects</h4>
-            <h2 class="text-center text-5xl">My Projects</h2>
-        
+            <div class="text-center mb-12 fade-in">
+            <div class="inline-block mb-4">
+            <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">Competencies</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            My
+            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] bg-clip-text text-transparent"> Projects</span>
+            </h2>
+        </div>        
 
         <!-- Category Tabs -->
         <div class="flex justify-center mb-12 overflow-x-auto py-2" data-aos="fade-up" data-aos-delay="100">
@@ -764,9 +1125,11 @@
 
 
         <!-------------------Footer section--------------------->
-        <div class="text-center sm:flex justify-between border-t border-gray-500 items-center">
-            <p>© 2024 Sumantha NTS. All rights reserved.</p>
-        </div>
+        <footer class="w-full px-[12%] py-6 bg-gray-100 mt-16">
+            <div class="text-center sm:flex justify-between border-t border-gray-300 items-center pt-4">
+                <p class="text-gray-600 text-sm">© 2025 Sumantha NTS. All rights reserved.</p>
+            </div>
+        </footer>
 
         <script src="./script.js"></script>
         <script>
@@ -821,6 +1184,141 @@
             // Animate a random badge every few seconds
             setInterval(animateRandomBadge, 3000);
             });
+
+            const cardsData = [
+            { title: "Programming", gradient: "from-[#007CF0] to-[#00DFD8]", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4", id: "ratings-green" },
+            { title: "Frameworks", gradient: "from-[#7928CA] to-[#FF0080]", icon: "M3 3h18v18H3V3z", id: "ratings-blue" },
+            { title: "Data Science", gradient: "from-[#FF4D4D] to-[#F9CB28]", icon: "M3 3h18v18H3V3z", id: "ratings-indigo" },
+            { title: "Generative AI", gradient: "from-[#00C9FF] to-[#92FE9D]", icon: "M12 6v6l4 2", id: "ratings-purple-ai" },
+            { title: "Tools & Ops", gradient: "from-[#FC466B] to-[#3F5EFB]", icon: "M12 6V4m0 2a2 2 0 100 4", id: "ratings-yellow-red" },
+            { title: "Cloud", gradient: "from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]", icon: "M3 15a4 4 0 014-4h10a4 4 0 010 8H7a4 4 0 01-4-4z", id: "ratings-cloud" },
+            { title: "Database", gradient: "from-[#8360c3] to-[#2ebf91]", icon: "M12 5a9 3 0 019 3v8a9 3 0 01-18 0V8a9 3 0 019-3z", id: "ratings-database" },
+            { title: "Soft Skills & Growth", gradient: "from-[#FF6A00] to-[#EE0979]", icon: "M5 13l4 4L19 7", id: "ratings-soft" }
+            ];
+
+            const skillsData = {
+            "ratings-green": [
+                { name: "Python", rating: 4.5 },
+                { name: "SQL", rating: 4.0 },
+                { name: "HTML", rating: 3.5 },
+                { name: "CSS", rating: 3.0 }
+            ],
+            "ratings-blue": [
+                { name: "FastAPI", rating: 4.5 },
+                { name: "Flask", rating: 4.0 },
+                { name: "Streamlit", rating: 4.5 },
+                { name: "PyTorch", rating: 4.3 }
+            ],
+            "ratings-indigo": [
+                { name: "Machine Learning", rating: 4.5 },
+                { name: "Deep Learning", rating: 4.3 },
+                { name: "NLP", rating: 4.3 },
+                { name: "Data Analysis", rating: 4.0 },
+                { name: "Feature Engineering", rating: 4.0 }
+            ],
+            "ratings-purple-ai": [
+                { name: "LLMs & Transformers", rating: 4.5 },
+                { name: "Fine-Tuning (LoRA / QLoRA)", rating: 4.5 },
+                { name: "Prompt Engineering", rating: 4.2 },
+                { name: "AI Agents", rating: 4.0 }
+            ],
+            "ratings-yellow-red": [
+                { name: "Docker", rating: 4.0 },
+                { name: "Git / GitHub", rating: 4.5 },
+                { name: "DVC (Data Versioning)", rating: 4.0 },
+                { name: "Tableau", rating: 3.0 }
+            ],
+            "ratings-cloud": [
+                { name: "AWS (EC2, SQS, S3)", rating: 4.3 },
+                { name: "Azure (VMs, Blob Storage)", rating: 3.8 }
+            ],
+            "ratings-database": [
+                { name: "MySQL", rating: 4.2 },
+                { name: "MongoDB", rating: 4.0 },
+                { name: "PostgreSQL", rating: 3.8 }
+            ],
+            "ratings-soft": [
+                { name: "Leadership", rating: 4.5 },
+                { name: "Communication", rating: 4.0 },
+                { name: "Learn & Upskill", rating: 4.6 }
+            ]
+            };
+
+            const container = document.getElementById("skillsContainer");
+            const dotsContainer = document.getElementById("scrollDots");
+
+            cardsData.forEach((card, i) => {
+            const div = document.createElement("div");
+            div.className = `card card-hover flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl shadow p-6 border border-gray-100 fade-in snap-start`;
+            div.dataset.gradient = card.gradient;
+            div.innerHTML = `
+                <div class="flex items-center gap-4 mb-6 border-b pb-4 border-gray-100">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-white shadow-md">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${card.icon}"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">${card.title}</h3>
+                </div>
+                <ul id="${card.id}" class="space-y-6"></ul>
+            `;
+            container.appendChild(div);
+
+            const dot = document.createElement("div");
+            dot.className = "scroll-dot";
+            dot.dataset.index = i;
+            dotsContainer.appendChild(dot);
+            });
+
+            function renderSkills() {
+            for (const [id, skills] of Object.entries(skillsData)) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const gradient = el.closest(".card").dataset.gradient.match(/#([0-9a-fA-F]{6})/g);
+                const color = gradient ? gradient[0] : "#2563eb";
+                el.innerHTML = skills.map(s => {
+                const pct = Math.round((s.rating / 5) * 100);
+                return `<li class="flex flex-col">
+                    <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-semibold text-gray-700">${s.name}</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${color};"></div></div>
+                </li>`;
+                }).join("");
+            }
+            }
+
+            renderSkills();
+
+            const dots = document.querySelectorAll(".scroll-dot");
+
+            function updateActiveDot() {
+            const scrollLeft = container.scrollLeft;
+            const cardWidth = container.querySelector(".card").offsetWidth + 24;
+            const index = Math.round(scrollLeft / cardWidth);
+            dots.forEach((d, i) => d.classList.toggle("active", i === index));
+            }
+
+            container.addEventListener("scroll", () => {
+            window.requestAnimationFrame(updateActiveDot);
+            });
+
+            function scrollSection(dir) {
+            const card = container.querySelector(".card");
+            const scroll = (card ? card.offsetWidth : 384) + 24;
+            container.scrollBy({ left: dir === 'left' ? -scroll : scroll, behavior: 'smooth' });
+            }
+
+            document.getElementById('scrollLeft').onclick = () => scrollSection('left');
+            document.getElementById('scrollRight').onclick = () => scrollSection('right');
+
+            dots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                const index = Number(dot.dataset.index);
+                const cardWidth = container.querySelector(".card").offsetWidth + 24;
+                container.scrollTo({ left: index * cardWidth, behavior: "smooth" });
+            });
+            });
+
+            updateActiveDot();
         </script>
     </body>
 </html>
