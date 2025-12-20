@@ -8,6 +8,7 @@
         <link rel="icon" type="image/x-icon" href="./images/programmer.png">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="tailwind.config.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <!-- Font Awesome for icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- AOS Animation Library -->
@@ -203,22 +204,25 @@
             }
         </style>
     </head>
-    <body>
-        <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
+    <body class="bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
+        <canvas id="bg-animation" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-50"></canvas>
+        <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md transition-colors duration-300">
             <img src="./images/Logo.png" alt="" class="w-52 cursor-pointer mr-10 h-full -mt-20 -mb-20">
-            <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50">
+            <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white/50 dark:bg-dark-card/50 shadow-sm backdrop-blur-sm transition-colors duration-300 dark:text-gray-200">
                 <li><a href="#top">Home</a></li>
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#project">Projects</a></li>
-                <li><a href="#contact">Contact Me</a></li>
+                <li><a href="#blogs">Blogs</a></li>
             </ul>
 
             <div class="flex items-center gap-4">
-            <!-- <button><img src="./images/moon.png" alt="" class="w-6"></button> -->
-            <a href="#contact" class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4">Contact
-                <img src="./images/up-right-arrow.png" alt="" width="20" height="20">
+            <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i id="theme-toggle-icon" class="fas fa-moon text-gray-600 dark:text-gray-300 text-xl"></i>
+            </button>
+            <a href="#contact" class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 dark:border-gray-400 rounded-full ml-4 dark:text-white transition-colors">Contact
+                <img src="./images/up-right-arrow.png" alt="" width="20" height="20" class="dark:invert">
             </a>
             </div>
 
@@ -235,6 +239,7 @@
                 <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
                 <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
                 <li><a href="#project" onclick="closeMenu()">Projects</a></li>
+                <li><a href="#blogs" onclick="closeMenu()">Blogs</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact Me</a></li>
             </ul>
         </nav>
@@ -242,31 +247,31 @@
         <!-------------------header section--------------------->
         <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
             <img src="./images/cropped-profile.jpg" alt="" class="rounded-full w-52">
-            <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3">Hi! I'm Sumantha NTS<img src="./images/wave.png" alt="" class="w-8"></h3>
-            <h1 class="text-3xl sm:text-6xl lg:text-[66px]">AI/ML Enthusiast based in India</h1>
-            <p class="max-w-2xl mx-auto">
-                I am currently working as a <b>Data Scientist-3</b> with <b>3+ years</b> experience in handling data science, machine learning, computer vision and NLP projects.
+            <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3 dark:text-gray-200">Hi! I'm <span class="font-bold text-indigo-600 dark:text-indigo-400">Sumantha NTS</span><img src="./images/wave.png" alt="" class="w-8"></h3>
+            <h1 class="text-3xl sm:text-6xl lg:text-[66px] dark:text-white"><span class="font-bold text-indigo-600 dark:text-indigo-400">AI/ML Enthusiast</span> based in India</h1>
+            <p class="max-w-2xl mx-auto dark:text-gray-300">
+                I am currently working as a <span class="font-bold text-indigo-600 dark:text-indigo-400">Senior Machine Learning Engineer</span> with <span class="font-bold text-indigo-600 dark:text-indigo-400">4+ years</span> experience in handling <span class="font-semibold text-gray-800 dark:text-gray-200">data science</span>, <span class="font-semibold text-gray-800 dark:text-gray-200">machine learning</span>, <span class="font-semibold text-gray-800 dark:text-gray-200">computer vision</span> and <span class="font-semibold text-gray-800 dark:text-gray-200">Generative AI</span> projects.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
                 <a href="#contact" class="px-10 py-3 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] 
-                text-white items-center gap-2">Contact Me</a>
+                text-white items-center gap-2 hover:shadow-lg transition-shadow">Contact Me</a>
 
-                <a href="./Document/Sumanth_Resume.pdf" class="px-10 py-3 border rounded-full border-gray-500 flex
-                items-center gap-2 bg-white">My resume <img src="./images/download-arrow.png" alt="" class="w-4"></a>
+                <a href="./Document/Sumanth_Resume.pdf" class="px-10 py-3 border rounded-full border-gray-500 dark:border-gray-400 flex
+                items-center gap-2 bg-white dark:bg-dark-card dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">My resume <img src="./images/download-arrow.png" alt="" class="w-4 dark:invert"></a>
             </div>
         </div>
         <!-------------------about section--------------------->
         <div id="about" class="w-full px-[12%]">
             <div class="text-center mb-16 fade-in">
                 <div class="inline-block mb-4">
-                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                    <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">
                         Introduction
                     </span>
                 </div>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
                     About
-                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                         Me
                     </span>
                 </h2>
@@ -275,61 +280,54 @@
             <div class="flex flex-col lg:flex-row items-center gap-20 my-20">
                 <div>
                     <img src="./images/Remove background project.jpeg" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
-                    <!-- Row of icons -->
-                    <div class="flex flex-row gap-5 mt-10 ml-4">
-                        <a href="https://github.com/sumantha-NTS" target="_blank" rel="noopener noreferrer">
-                            <img src="./images/github icon.png" alt="GitHub Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
-                        </a>
-                        <a href="https://linkedin.com/in/sumantha-nts" target="_blank" rel="noopener noreferrer">
-                            <img src="./images/linkedin icon.png" alt="LinkedIn Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
-                        </a>
-                        <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer">
-                            <img src="./images/instagram icon.png" alt="Instagram Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
-                        </a>
-                        <a href="https://medium.com/@sumanthneechadi" target="_blank" rel="noopener noreferrer">
-                            <img src="./images/medium icon.png" alt="Medium Icon" class="w-10 sm:w-14 rounded-3xl max-w-none">
-                        </a>
-                    </div>
                 </div>
 
 
                 <div>
-                    <ul class="mb-10 text-justify list-disc pl-2 space-y-5">
+                    <ul class="mb-10 text-justify list-disc pl-2 space-y-5 dark:text-gray-300">
                         <li>
-                            A dynamic and self-driven data scientist with <b>4+ years</b> of experience, deeply passionate about leveraging 
+                            A dynamic and self-driven data scientist with <span class="font-bold text-indigo-600 dark:text-indigo-400">4+ years</span> of experience, deeply passionate about leveraging 
                             cutting-edge technologies. Proficient in designing scalable solutions for diverse data science challenges, 
-                            with expertise in Machine Learning algorithms, Computer Vision, NLP, and Generative AI. Possesses a strong 
+                            with expertise in <span class="font-semibold text-gray-800 dark:text-gray-200">Machine Learning algorithms</span>, <span class="font-semibold text-gray-800 dark:text-gray-200">Computer Vision</span>, <span class="font-semibold text-gray-800 dark:text-gray-200">NLP</span>, and <span class="font-semibold text-gray-800 dark:text-gray-200">Generative AI</span>. Possesses a strong 
                             understanding of the end-to-end lifecycle of data science projects.
                         </li>
                         <li>
-                            Experienced in developing chat applications powered by <b>Large Language Models (LLMs)</b>.
+                            Experienced in developing chat applications powered by <span class="font-bold text-indigo-600 dark:text-indigo-400">Large Language Models (LLMs)</span>.
                         </li>
                         <li>
-                            Skilled in utilizing <b>DVC</b> for efficient management of data and model versioning.
+                            Skilled in utilizing <span class="font-bold text-indigo-600 dark:text-indigo-400">DVC</span> for efficient management of data and model versioning.
                         </li>
                         <li>
-                            Proficient in creating <b>Docker</b> images and deploying applications on servers seamlessly.
+                            Proficient in creating <span class="font-bold text-indigo-600 dark:text-indigo-400">Docker</span> images and deploying applications on servers seamlessly.
                         </li>
                     </ul>
 
-                    <div class="flex">
-                        <img src="./images/email.png" alt="" class="w-10 mb-5">
-                        <p class="ml-3 items-center text-center mt-3">sumanthneechadi@gmail.com</p>
+                    <div class="flex items-center mb-5">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 rounded-full">
+                            <img src="./images/email.png" alt="" class="w-6 dark:invert">
+                        </div>
+                        <p class="ml-3 dark:text-gray-300">sumanthneechadi@gmail.com</p>
                     </div>
                     
-                    <div class="flex">
-                        <img src="./images/location.png" alt="" class="w-10 mb-5">
-                        <p class="ml-3 items-center text-center mt-3">Bengaluru, Karnataka</p>
+                    <div class="flex items-center mb-5">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 rounded-full">
+                            <img src="./images/location.png" alt="" class="w-6 dark:invert">
+                        </div>
+                        <p class="ml-3 dark:text-gray-300">Bengaluru, Karnataka</p>
                     </div>
 
-                    <div class="flex">
-                        <img src="./images/telephone.png" alt="" class="w-10 mb-5">
-                        <p class="ml-3 items-center text-center mt-3">+91 9035697661</p>
+                    <div class="flex items-center mb-5">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 rounded-full">
+                            <img src="./images/telephone.png" alt="" class="w-6 dark:invert">
+                        </div>
+                        <p class="ml-3 dark:text-gray-300">+91 9035697661</p>
                     </div>
 
-                    <div class="flex">
-                        <img src="./images/education.png" alt="" class="w-10">
-                        <p class="ml-3 items-center text-center mt-3">B.E in Electrical & Electronics</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 rounded-full">
+                            <img src="./images/education.png" alt="" class="w-6 dark:invert">
+                        </div>
+                        <p class="ml-3 dark:text-gray-300">B.E in Electrical & Electronics</p>
                     </div>
                 </div>
                 
@@ -341,41 +339,41 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 fade-in">
                 <div class="inline-block mb-4">
-                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                    <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">
                         Career Journey
                     </span>
                 </div>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
                     Professional
-                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                         Experience
                     </span>
                 </h2>
             </div>
 
             <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
-                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <div class="text-3xl sm:text-4xl font-bold text-indigo-600 mb-2">7+</div>
-                    <div class="text-gray-600 font-medium">Years Experience</div>
+                <div class="text-center p-6 bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">7+</div>
+                    <div class="text-gray-600 dark:text-gray-400 font-medium">Years Experience</div>
                 </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <div class="text-3xl sm:text-4xl font-bold text-purple-600 mb-2">18+</div>
-                    <div class="text-gray-600 font-medium">Projects Delivered</div>
+                <div class="text-center p-6 bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">18+</div>
+                    <div class="text-gray-600 dark:text-gray-400 font-medium">Projects Delivered</div>
                 </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">4</div>
-                    <div class="text-gray-600 font-medium">Companies</div>
+                <div class="text-center p-6 bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">4</div>
+                    <div class="text-gray-600 dark:text-gray-400 font-medium">Companies</div>
                 </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <div class="text-3xl sm:text-4xl font-bold text-green-600 mb-2">92%</div>
-                    <div class="text-gray-600 font-medium">Best Accuracy</div>
+                <div class="text-center p-6 bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">92%</div>
+                    <div class="text-gray-600 dark:text-gray-400 font-medium">Best Accuracy</div>
                 </div>
             </div>
             <br><br>
 
             <div class="relative">
                 
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indigo-200 via-purple-200 to-transparent"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indigo-200 via-purple-200 to-transparent dark:from-indigo-900 dark:via-purple-900"></div>
 
                 <div class="space-y-8 lg:space-y-16">
 
@@ -384,8 +382,8 @@
                         <div class="relative">
                             <div class="hidden lg:block absolute -left-[4.5rem] top-8 w-4 h-4 bg-emerald-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
                             
-                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
+                            <div class="card-hover bg-white dark:bg-dark-card rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 relative overflow-hidden transition-colors">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
                                 
                                 <div class="relative z-10">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
@@ -394,8 +392,8 @@
                                                 Q
                                             </div>
                                             <div>
-                                                <h3 class="text-2xl font-bold text-gray-900">Senior MLE</h3>
-                                                <a href="https://quantiphi.com" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Senior MLE</h3>
+                                                <a href="https://quantiphi.com" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-lg flex items-center gap-1 transition-colors">
                                                     Quantiphi
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -410,7 +408,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center text-gray-600 mb-6">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400 mb-6">
                                         <svg class="w-5 h-5 mr-2 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                         </svg>
@@ -420,24 +418,24 @@
                                     <div class="space-y-4">
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Spearheaded the development of a client-facing <span class="font-semibold text-gray-900">Finetuning as a Service (FTAAS)</span> platform, enabling the customization and deployment of open-source LLMs using LoRA/QLoRA and KubeFlow.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Spearheaded the development of a client-facing <span class="font-semibold text-gray-900 dark:text-white">Finetuning as a Service (FTAAS)</span> platform, enabling the customization and deployment of open-source LLMs using <span class="font-semibold text-emerald-600 dark:text-emerald-400">LoRA/QLoRA</span> and <span class="font-semibold text-emerald-600 dark:text-emerald-400">KubeFlow</span>.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Acted as a key liaison between <span class="font-semibold text-gray-900">business units and technical teams</span>, translating complex problems into actionable AI-driven solutions.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Acted as a key liaison between <span class="font-semibold text-gray-900 dark:text-white">business units and technical teams</span>, translating complex problems into actionable AI-driven solutions.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Mentored and guided junior Machine Learning Engineers, fostering their professional development and maximizing team contribution.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Mentored and guided junior Machine Learning Engineers, fostering their professional development and maximizing team contribution.</p>
                                         </div>
                                     </div>
 
                                     <div class="mt-6 flex flex-wrap gap-2">
-                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">LLM</span>
-                                        <span class="skill-tag px-3 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-lg">LoRA</span>
-                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">QLoRA</span>
-                                        <span class="skill-tag px-3 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-lg">KubeFlow</span>
-                                        <span class="skill-tag px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg">Nemo-customizer</span>
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-lg">LLM</span>
+                                        <span class="skill-tag px-3 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-semibold rounded-lg">LoRA</span>
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-lg">QLoRA</span>
+                                        <span class="skill-tag px-3 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-semibold rounded-lg">KubeFlow</span>
+                                        <span class="skill-tag px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-lg">Nemo-customizer</span>
                                     </div>
                                 </div>
                             </div>
@@ -448,8 +446,8 @@
                         <div class="relative lg:text-right">
                              <div class="hidden lg:block absolute -right-[4.5rem] top-8 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
                             
-                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
+                            <div class="card-hover bg-white dark:bg-dark-card rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 relative overflow-hidden transition-colors">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
                                 
                                 <div class="relative z-10">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
@@ -458,8 +456,8 @@
                                                 A
                                             </div>
                                             <div class="text-left">
-                                                <h3 class="text-2xl font-bold text-gray-900">Data Scientist-3</h3>
-                                                <a href="https://aidetic.in" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Data Scientist-3</h3>
+                                                <a href="https://aidetic.in" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold text-lg flex items-center gap-1 transition-colors">
                                                     Aidetic
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -474,7 +472,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center text-gray-600 mb-6">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400 mb-6">
                                         <svg class="w-5 h-5 mr-2 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                         </svg>
@@ -484,29 +482,29 @@
                                     <div class="space-y-4 text-left">
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Led development of a <span class="font-semibold text-gray-900">text-to-SQL MVP</span> and a conversational chatbot for data-driven insights.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Led development of a <span class="font-semibold text-gray-900 dark:text-white">text-to-SQL MVP</span> and a conversational chatbot for data-driven insights.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Fine-tuned multiple <span class="font-semibold text-gray-900">LLMs (BERT, DeepSeek)</span> for specialized legal domain tasks, achieving high accuracy.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Fine-tuned multiple <span class="font-semibold text-gray-900 dark:text-white">LLMs (BERT, DeepSeek)</span> for specialized legal domain tasks, achieving high accuracy.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Engineered and deployed an <span class="font-semibold text-gray-900">agentic workflow</span> for automated report generation using CrewAI, FastAPI, and Qdrant.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Engineered and deployed an <span class="font-semibold text-gray-900 dark:text-white">agentic workflow</span> for automated report generation using <span class="font-semibold text-indigo-600 dark:text-indigo-400">CrewAI</span>, <span class="font-semibold text-indigo-600 dark:text-indigo-400">FastAPI</span>, and <span class="font-semibold text-indigo-600 dark:text-indigo-400">Qdrant</span>.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Directed an <span class="font-semibold text-gray-900">object detection project</span> using Yolo-v8 to identify vehicle defects with 92% mAP.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Directed an <span class="font-semibold text-gray-900 dark:text-white">object detection project</span> using <span class="font-semibold text-indigo-600 dark:text-indigo-400">Yolo-v8</span> to identify vehicle defects with 92% mAP.</p>
                                         </div>
                                     </div>
 
                                     <div class="mt-6 flex flex-wrap gap-2">
-                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">LLMs</span>
-                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">BERT</span>
-                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">DeepSeek</span>
-                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">CrewAI</span>
-                                        <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg">Yolo-v8</span>
-                                        <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">FastAPI</span>
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-lg">LLMs</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-lg">BERT</span>
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-lg">DeepSeek</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-lg">CrewAI</span>
+                                        <span class="skill-tag px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-lg">Yolo-v8</span>
+                                        <span class="skill-tag px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-lg">FastAPI</span>
                                     </div>
                                 </div>
                             </div>
@@ -519,8 +517,8 @@
                         <div class="relative">
                             <div class="hidden lg:block absolute -left-[4.5rem] top-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
                             
-                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
+                            <div class="card-hover bg-white dark:bg-dark-card rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 relative overflow-hidden transition-colors">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-full filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
                                 
                                 <div class="relative z-10">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
@@ -529,8 +527,8 @@
                                                 W
                                             </div>
                                             <div>
-                                                <h3 class="text-2xl font-bold text-gray-900">Data Scientist</h3>
-                                                <a href="https://wowlabz.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Data Scientist</h3>
+                                                <a href="https://wowlabz.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold text-lg flex items-center gap-1 transition-colors">
                                                     Wowlabz
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -545,7 +543,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center text-gray-600 mb-6">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400 mb-6">
                                         <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                         </svg>
@@ -555,23 +553,23 @@
                                     <div class="space-y-4">
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Developed several <span class="font-semibold text-gray-900">LLM-powered tools</span> to automate tasks like slide generation and resume parsing.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Developed several <span class="font-semibold text-gray-900 dark:text-white">LLM-powered tools</span> to automate tasks like slide generation and resume parsing.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Conducted advanced experiments with <span class="font-semibold text-gray-900">generative image models</span>, including fine-tuning Stable Diffusion and implementing ControlNet.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Conducted advanced experiments with <span class="font-semibold text-gray-900 dark:text-white">generative image models</span>, including fine-tuning <span class="font-semibold text-blue-600 dark:text-blue-400">Stable Diffusion</span> and implementing <span class="font-semibold text-blue-600 dark:text-blue-400">ControlNet</span>.</p>
                                         </div>
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Built and deployed a high-accuracy <span class="font-semibold text-gray-900">inventory forecasting system</span> using XGBoost to predict stock levels.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Built and deployed a high-accuracy <span class="font-semibold text-gray-900 dark:text-white">inventory forecasting system</span> using <span class="font-semibold text-blue-600 dark:text-blue-400">XGBoost</span> to predict stock levels.</p>
                                         </div>
                                     </div>
 
                                     <div class="mt-6 flex flex-wrap gap-2">
-                                        <span class="skill-tag px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg">LLM Tools</span>
-                                        <span class="skill-tag px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">Stable Diffusion</span>
-                                        <span class="skill-tag px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg">ControlNet</span>
-                                        <span class="skill-tag px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">XGBoost</span>
+                                        <span class="skill-tag px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-lg">LLM Tools</span>
+                                        <span class="skill-tag px-3 py-1 bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-lg">Stable Diffusion</span>
+                                        <span class="skill-tag px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-lg">ControlNet</span>
+                                        <span class="skill-tag px-3 py-1 bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-lg">XGBoost</span>
                                     </div>
                                 </div>
                             </div>
@@ -582,8 +580,8 @@
                          <div class="relative lg:text-right">
                             <div class="hidden lg:block absolute -right-[4.5rem] top-8 w-4 h-4 bg-red-600 rounded-full border-4 border-white shadow-lg timeline-dot"></div>
                             
-                            <div class="card-hover bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 relative overflow-hidden">
-                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-yellow-100 to-red-100 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
+                            <div class="card-hover bg-white dark:bg-dark-card rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 relative overflow-hidden transition-colors">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-yellow-100 to-red-100 dark:from-yellow-900/20 dark:to-red-900/20 rounded-full filter blur-3xl opacity-50 -ml-16 -mt-16"></div>
                                 
                                 <div class="relative z-10">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
@@ -592,8 +590,8 @@
                                                 P
                                             </div>
                                             <div class="text-left">
-                                                <h3 class="text-2xl font-bold text-gray-900">Power System Engineer</h3>
-                                                <a href="https://beta.prdcinfotech.com/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-700 font-semibold text-lg flex items-center gap-1 transition-colors">
+                                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Power System Engineer</h3>
+                                                <a href="https://beta.prdcinfotech.com/" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-semibold text-lg flex items-center gap-1 transition-colors">
                                                     PRDC
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -608,7 +606,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center text-gray-600 mb-6">
+                                    <div class="flex items-center text-gray-600 dark:text-gray-400 mb-6">
                                         <svg class="w-5 h-5 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                         </svg>
@@ -618,14 +616,14 @@
                                     <div class="space-y-4 text-left">
                                         <div class="flex items-start gap-3 group">
                                             <div class="mt-1 w-2 h-2 rounded-full bg-red-500 flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-                                            <p class="text-gray-700 leading-relaxed">Analyzed <span class="font-semibold text-gray-900">industrial power system networks</span>, executing detailed power flow studies and delivering comprehensive technical reports to optimize grid performance and ensure reliability.</p>
+                                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Analyzed <span class="font-semibold text-gray-900 dark:text-white">industrial power system networks</span>, executing detailed power flow studies and delivering comprehensive technical reports to optimize grid performance and ensure reliability.</p>
                                         </div>
                                     </div>
 
                                     <div class="mt-6 flex flex-wrap gap-2">
-                                        <span class="skill-tag px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg">Power Systems</span>
-                                        <span class="skill-tag px-3 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-lg">Grid Analysis</span>
-                                        <span class="skill-tag px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg">Power Flow Studies</span>
+                                        <span class="skill-tag px-3 py-1 bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs font-semibold rounded-lg">Power Systems</span>
+                                        <span class="skill-tag px-3 py-1 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-semibold rounded-lg">Grid Analysis</span>
+                                        <span class="skill-tag px-3 py-1 bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs font-semibold rounded-lg">Power Flow Studies</span>
                                     </div>
                                 </div>
                             </div>
@@ -645,24 +643,24 @@
         <!-- Header -->
         <div class="text-center mb-12 fade-in">
             <div class="inline-block mb-4">
-            <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">Competencies</span>
+            <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">Competencies</span>
             </div>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             Technical
-            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] bg-clip-text text-transparent"> Skills</span>
+            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] dark:from-[#3b82f6] dark:to-[#a855f7] bg-clip-text text-transparent"> Skills</span>
             </h2>
         </div>
 
         <div class="relative">
             <!-- Scroll Arrows -->
             <button id="scrollLeft" aria-label="Scroll left"
-            class="scroll-arrow absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white rounded-full shadow-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-all">
+            class="scroll-arrow absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white dark:bg-dark-card rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
             </button>
             <button id="scrollRight" aria-label="Scroll right"
-            class="scroll-arrow absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white rounded-full shadow-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-all">
+            class="scroll-arrow absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 bg-white dark:bg-dark-card rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -678,109 +676,176 @@
         <div id="project" class="w-full px-[12%] py-10">
             <div class="text-center mb-12 fade-in">
             <div class="inline-block mb-4">
-            <span class="px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">Competencies</span>
+            <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">Competencies</span>
             </div>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             My
-            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] bg-clip-text text-transparent"> Projects</span>
+            <span class="bg-gradient-to-r from-[#007CF0] to-[#7928CA] dark:from-[#3b82f6] dark:to-[#a855f7] bg-clip-text text-transparent"> Projects</span>
             </h2>
         </div>        
 
         <!-- Category Tabs -->
         <div class="flex justify-center mb-12 overflow-x-auto py-2" data-aos="fade-up" data-aos-delay="100">
-            <div class="inline-flex bg-gray-100 rounded-lg p-1 shadow-sm">
-            <button class="category-btn active px-4 py-2 rounded-md bg-white text-blue-600 shadow font-medium transition-all" data-category="all">All Projects</button>
-            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="legal">Legal AI</button>
-            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="finance">Finance</button>
-            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="hr">HR Tech</button>
-            <button class="category-btn px-4 py-2 rounded-md text-gray-600 hover:text-gray-900 font-medium transition-all" data-category="cv">Computer Vision</button>
+            <div class="inline-flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1 shadow-sm">
+            <button class="category-btn active px-4 py-2 rounded-md bg-white dark:bg-dark-card text-blue-600 dark:text-blue-400 shadow font-medium transition-all" data-category="all">All Projects</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 font-medium transition-all" data-category="legal">Legal AI</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 font-medium transition-all" data-category="finance">Finance</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 font-medium transition-all" data-category="hr">HR Tech</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 font-medium transition-all" data-category="cv">Computer Vision</button>
+            <button class="category-btn px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 font-medium transition-all" data-category="gen-ai">Gen AI</button>
             </div>
         </div>
         
         <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
+            <!-- Project: PDF Genius -->
+            <div class="card project-card" data-category="gen-ai" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-inner shadow-lg">
+                    <!-- Card Front -->
+                    <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                        <div class="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-file-pdf text-xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 px-2 py-1 rounded-full w-fit mb-2">Gen AI</span>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">PDF Genius</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
+                            Comprehensive PDF manipulation tool featuring <span class="font-semibold text-indigo-600 dark:text-indigo-400">Merge, Split, Cut, Rotate</span> and an AI-powered <span class="font-semibold text-indigo-600 dark:text-indigo-400">Chat with PDF</span> capability using RAG.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
+                                <i class="fab fa-python mr-1"></i> Python
+                            </span>
+                            <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
+                                <i class="fas fa-bolt mr-1"></i> Streamlit
+                            </span>
+                            <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
+                                <i class="fas fa-brain mr-1"></i> LLM
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://pdfgenius-2025.streamlit.app/" target="_blank" class="flex items-center text-red-600 dark:text-red-400 font-semibold text-sm hover:underline">
+                                <span class="relative flex h-2 w-2 mr-2">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                </span>
+                                Live App
+                            </a>
+                            <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Back -->
+                    <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Key Features</h3>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span><strong>PDF Tools:</strong> Merge multiple files, split into pages, cut specific ranges, and rotate pages.</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span><strong>Chat with PDF:</strong> Interactive RAG system allowing users to query document content.</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span><strong>Tech Stack:</strong> Built with Streamlit for UI, Python for logic, and LLMs for reasoning.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://pdfgenius-2025.streamlit.app/" target="_blank" class="flex-1 text-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Project 1 - Legal Clause Identification -->
             <div class="card project-card" data-category="legal" data-aos="fade-up" data-aos-delay="150">
             <div class="card-inner shadow-lg">
                 <!-- Card Front -->
-                <div class="card-front bg-white p-6 flex flex-col">
-                <div class="bg-blue-50 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                <div class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <i class="fas fa-balance-scale text-xl"></i>
                 </div>
-                <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">Legal Clause Identification</h3>
-                <p class="text-gray-600 mb-4 flex-grow">
-                    Generated synthetic data using various strategies with large language models (LLMs) and fine-tuned a BERT model for classification tasks in the legal domain.
+                <span class="text-xs font-semibold bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Legal Clause Identification</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
+                    Generated synthetic data using various strategies with <span class="font-semibold text-indigo-600 dark:text-indigo-400">large language models (LLMs)</span> and fine-tuned a <span class="font-semibold text-indigo-600 dark:text-indigo-400">BERT model</span> for classification tasks in the legal domain.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fab fa-python mr-1"></i> Python
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-bolt mr-1"></i> FastAPI
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-brain mr-1"></i> LLM
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                    <div class="text-green-600 font-semibold text-sm mr-2">92% Accuracy</div>
-                    <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="text-green-600 dark:text-green-400 font-semibold text-sm mr-2">92% Accuracy</div>
+                    <div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                         <div class="h-full w-[92%] bg-green-500 rounded-full"></div>
                     </div>
                     </div>
-                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                    <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
                 </div>
                 </div>
                 
                 <!-- Card Back -->
-                <div class="card-back bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white">
-                <h3 class="text-xl font-bold mb-4">Legal Clause Identification</h3>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-blue-100">Tech Stack:</h4>
+                <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Legal Clause Identification</h3>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-600 dark:text-blue-400">Tech Stack:</h4>
                     <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-python mr-1"></i> Python
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-bolt mr-1"></i> FastAPI
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-brain mr-1"></i> LLM
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-docker mr-1"></i> Docker
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-language mr-1"></i> NLP
-                    </span>
+                        </span>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-blue-100">Highlights:</h4>
-                    <ul class="space-y-2 text-sm">
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Generated synthetic data using various strategies with large language models (LLMs) and fine-tuned a <strong>BERT</strong> model for classification tasks in the legal domain.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Created a pipeline which uses 3 stages of LLMs to validate the clauses present in the contracts. Successfully achieved a 92% accuracy in identifying legal clauses.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
+                    </div>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-600 dark:text-blue-400">Highlights:</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Generated synthetic data using various strategies with large language models (LLMs) and fine-tuned a <strong>BERT</strong> model.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Created a pipeline which uses 3 stages of LLMs to validate the clauses present in the contracts.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
                         <span>Deployed the pipeline on <strong>FastAPI</strong> and <strong>Docker</strong> for easy accessibility and scalability.</span>
-                    </li>
+                        </li>
                     </ul>
+                    </div>
                 </div>
                 <div class="mt-auto">
                     <div class="flex items-center">
-                    <div class="h-2 w-20 bg-white/20 rounded-full mr-3">
-                        <div class="h-full w-[92%] bg-green-400 rounded-full"></div>
+                    <div class="h-2 w-20 bg-gray-200 dark:bg-gray-700 rounded-full mr-3">
+                        <div class="h-full w-[92%] bg-green-500 rounded-full"></div>
                     </div>
-                    <span class="text-green-300 font-medium text-sm">92% Accuracy</span>
+                    <span class="text-green-600 dark:text-green-400 font-medium text-sm">92% Accuracy</span>
                     </div>
                 </div>
                 </div>
@@ -791,77 +856,75 @@
             <div class="card project-card" data-category="legal" data-aos="fade-up" data-aos-delay="200">
             <div class="card-inner shadow-lg">
                 <!-- Card Front -->
-                <div class="card-front bg-white p-6 flex flex-col">
-                <div class="bg-blue-50 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                <div class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <i class="fas fa-file-contract text-xl"></i>
                 </div>
-                <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">Contract Overview</h3>
-                <p class="text-gray-600 mb-4 flex-grow">
+                <span class="text-xs font-semibold bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full w-fit mb-2">Legal AI</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Contract Overview</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                     Created a process which automatically generates a overview for a given contract which include complete summary, responsibilities, risk associated with the parties.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fab fa-python mr-1"></i> Python
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-bolt mr-1"></i> FastAPI
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-brain mr-1"></i> LLM
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="invisible">
-                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    <div class="text-green-600 dark:text-green-400 font-semibold text-sm mr-2">Spacer</div>
                     </div>
-                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                    <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
                 </div>
                 </div>
                 
                 <!-- Card Back -->
-                <div class="card-back bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white">
-                <h3 class="text-xl font-bold mb-4">Contract Overview</h3>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-blue-100">Tech Stack:</h4>
+                <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Contract Overview</h3>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-600 dark:text-blue-400">Tech Stack:</h4>
                     <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-python mr-1"></i> Python
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-bolt mr-1"></i> FastAPI
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-brain mr-1"></i> LLM
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-docker mr-1"></i> Docker
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-users mr-1"></i> CrewAI
-                    </span>
+                        </span>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-blue-100">Highlights:</h4>
-                    <ul class="space-y-2 text-sm">
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Created a process which automatically generates an overview for contracts including complete summary, responsibilities, risk associated with the parties.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Implemented <strong>crew AI</strong> agents to collaborate in generating comprehensive contract overviews with specialized focus areas.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Wrapped the solution in a <strong>FastAPI</strong> endpoint and containerized with <strong>Docker</strong> for easy accessibility.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Collaborated with the legal team to understand requirements and validate results, ensuring the system meets real-world needs.</span>
-                    </li>
+                    </div>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-blue-600 dark:text-blue-400">Highlights:</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Created a process which automatically generates an overview for contracts.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Implemented <strong>crew AI</strong> agents to collaborate in generating comprehensive contract overviews.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Wrapped the solution in a <strong>FastAPI</strong> endpoint and containerized with <strong>Docker</strong>.</span>
+                        </li>
                     </ul>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -871,80 +934,82 @@
             <div class="card project-card" data-category="finance" data-aos="fade-up" data-aos-delay="250">
             <div class="card-inner shadow-lg">
                 <!-- Card Front -->
-                <div class="card-front bg-white p-6 flex flex-col">
-                <div class="bg-green-50 text-green-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                <div class="bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <i class="fas fa-robot text-xl"></i>
                 </div>
-                <span class="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full w-fit mb-2">Finance</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">Chatbot for Financial Data</h3>
-                <p class="text-gray-600 mb-4 flex-grow">
+                <span class="text-xs font-semibold bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 px-2 py-1 rounded-full w-fit mb-2">Finance</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Chatbot for Financial Data</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                     Developed an intelligent chatbot that analyzes and provides insights on financial data, helping users make informed decisions.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fab fa-python mr-1"></i> Python
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-chart-line mr-1"></i> Streamlit
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-database mr-1"></i> MySQL
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="invisible">
-                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    <div class="text-green-600 dark:text-green-400 font-semibold text-sm mr-2">Spacer</div>
                     </div>
-                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                    <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
                 </div>
                 </div>
                 
                 <!-- Card Back -->
-                <div class="card-back bg-gradient-to-br from-green-600 to-emerald-700 p-6 text-white">
-                <h3 class="text-xl font-bold mb-4">Chatbot for Financial Data</h3>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-green-100">Tech Stack:</h4>
+                <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Chatbot for Financial Data</h3>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-green-600 dark:text-green-400">Tech Stack:</h4>
                     <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-python mr-1"></i> Python
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-chart-line mr-1"></i> Streamlit
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-brain mr-1"></i> LLM
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-database mr-1"></i> MySQL
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-docker mr-1"></i> Docker
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-bolt mr-1"></i> FastAPI
-                    </span>
+                        </span>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-green-100">Highlights:</h4>
-                    <ul class="space-y-2 text-sm">
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Developed an intelligent chatbot interface using Streamlit that allows users to query financial data and receive insights in natural language.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Integrated MySQL database to store and retrieve financial information, with FastAPI providing backend services.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Implemented natural language processing capabilities to interpret complex financial queries and provide accurate responses.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Containerized the solution with Docker for consistent deployment across environments.</span>
-                    </li>
+                    </div>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-green-600 dark:text-green-400">Highlights:</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Developed an intelligent chatbot interface using Streamlit.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Integrated MySQL database to store and retrieve financial information.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Implemented natural language processing capabilities.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Containerized the solution with Docker for consistent deployment.</span>
+                        </li>
                     </ul>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -954,87 +1019,89 @@
             <div class="card project-card" data-category="hr" data-aos="fade-up" data-aos-delay="300">
             <div class="card-inner shadow-lg">
                 <!-- Card Front -->
-                <div class="card-front bg-white p-6 flex flex-col">
-                <div class="bg-purple-50 text-purple-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                <div class="bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <i class="fas fa-file-alt text-xl"></i>
                 </div>
-                <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full w-fit mb-2">HR Tech</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">Resume Parsing</h3>
-                <p class="text-gray-600 mb-4 flex-grow">
+                <span class="text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full w-fit mb-2">HR Tech</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Resume Parsing</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                     Smart resume parser using YOLO v5 for section detection and NER models to extract structured information from resumes.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fab fa-python mr-1"></i> Python
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-bolt mr-1"></i> FastAPI
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-eye mr-1"></i> YOLO v5
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                    <div class="text-green-600 font-semibold text-sm mr-2">90% Accuracy</div>
-                    <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="text-green-600 dark:text-green-400 font-semibold text-sm mr-2">90% Accuracy</div>
+                    <div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                         <div class="h-full w-[90%] bg-green-500 rounded-full"></div>
                     </div>
                     </div>
-                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                    <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
                 </div>
                 </div>
                 
                 <!-- Card Back -->
-                <div class="card-back bg-gradient-to-br from-purple-600 to-indigo-700 p-6 text-white">
-                <h3 class="text-xl font-bold mb-4">Resume Parsing</h3>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-purple-100">Tech Stack:</h4>
+                <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Resume Parsing</h3>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-purple-600 dark:text-purple-400">Tech Stack:</h4>
                     <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-python mr-1"></i> Python
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-bolt mr-1"></i> FastAPI
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-eye mr-1"></i> YOLO v5
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-tag mr-1"></i> NER
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-docker mr-1"></i> Docker
-                    </span>
+                        </span>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-purple-100">Highlights:</h4>
-                    <ul class="space-y-2 text-sm">
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Implemented a FastAPI package featuring <strong>YOLO v5</strong> for resume section detection and Named Entity Recognition (NER) models for detailed breakdown of experience and education sections.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Achieved <strong>90% accuracy</strong> on traditional resume formats and <strong>85% accuracy</strong> on sectioned resume formats, significantly reducing manual data entry for HR professionals.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Built a modular pipeline that first detects resume sections visually, then applies specialized NER models to extract structured data.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Containerized the solution with Docker for easy deployment and scalability across different environments.</span>
-                    </li>
+                    </div>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-purple-600 dark:text-purple-400">Highlights:</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Implemented a FastAPI package featuring <strong>YOLO v5</strong> for resume section detection.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Achieved <strong>90% accuracy</strong> on traditional resume formats.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Built a modular pipeline that first detects resume sections visually, then applies specialized NER models.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Containerized the solution with Docker for easy deployment.</span>
+                        </li>
                     </ul>
+                    </div>
                 </div>
                 <div class="mt-auto">
                     <div class="flex items-center">
-                    <div class="h-2 w-20 bg-white/20 rounded-full mr-3">
-                        <div class="h-full w-[90%] bg-green-400 rounded-full"></div>
+                    <div class="h-2 w-20 bg-gray-200 dark:bg-gray-700 rounded-full mr-3">
+                        <div class="h-full w-[90%] bg-green-500 rounded-full"></div>
                     </div>
-                    <span class="text-green-300 font-medium text-sm">90% Accuracy</span>
+                    <span class="text-green-600 dark:text-green-400 font-medium text-sm">90% Accuracy</span>
                     </div>
                 </div>
                 </div>
@@ -1045,77 +1112,75 @@
             <div class="card project-card" data-category="cv" data-aos="fade-up" data-aos-delay="350">
             <div class="card-inner shadow-lg">
                 <!-- Card Front -->
-                <div class="card-front bg-white p-6 flex flex-col">
-                <div class="bg-orange-50 text-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <div class="card-front bg-white dark:bg-dark-card p-6 flex flex-col transition-colors">
+                <div class="bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <i class="fas fa-paint-brush text-xl"></i>
                 </div>
-                <span class="text-xs font-semibold bg-orange-100 text-orange-800 px-2 py-1 rounded-full w-fit mb-2">Computer Vision</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-900">AI Image Editing Suite</h3>
-                <p class="text-gray-600 mb-4 flex-grow">
+                <span class="text-xs font-semibold bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 px-2 py-1 rounded-full w-fit mb-2">Computer Vision</span>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">AI Image Editing Suite</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                     Comprehensive image editing tools including background removal, upscaling, style transfer, and text-to-image generation with an intuitive interface.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fab fa-python mr-1"></i> Python
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-desktop mr-1"></i> Gradio
                     </span>
-                    <span class="skill-badge bg-gray-100 px-3 py-1 rounded-full text-gray-700 text-xs flex items-center">
+                    <span class="skill-badge bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs flex items-center">
                     <i class="fas fa-brain mr-1"></i> Diffusion
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="invisible">
-                    <div class="text-green-600 font-semibold text-sm mr-2">Spacer</div>
+                    <div class="text-green-600 dark:text-green-400 font-semibold text-sm mr-2">Spacer</div>
                     </div>
-                    <div class="text-gray-400 text-sm">Flip for details →</div>
+                    <div class="text-gray-400 dark:text-gray-500 text-sm">Flip for details →</div>
                 </div>
                 </div>
                 
                 <!-- Card Back -->
-                <div class="card-back bg-gradient-to-br from-orange-500 to-pink-600 p-6 text-white">
-                <h3 class="text-xl font-bold mb-4">AI Image Editing Suite</h3>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-orange-100">Tech Stack:</h4>
+                <div class="card-back bg-white dark:bg-dark-card p-6 flex flex-col justify-between transition-colors">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">AI Image Editing Suite</h3>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-orange-600 dark:text-orange-400">Tech Stack:</h4>
                     <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fab fa-python mr-1"></i> Python
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-desktop mr-1"></i> Gradio
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-brain mr-1"></i> Diffusion Models
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-random mr-1"></i> Transfer Learning
-                    </span>
-                    <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs">
+                        </span>
+                        <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs">
                         <i class="fas fa-eye mr-1"></i> Computer Vision
-                    </span>
+                        </span>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <h4 class="font-semibold mb-2 text-orange-100">Highlights:</h4>
-                    <ul class="space-y-2 text-sm">
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Created a comprehensive image editing application by integrating multiple open-source AI models for background removal, image upscaling, artistic style transfer, and text-to-image generation.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Developed an intuitive <strong>Gradio</strong> interface that allows users to easily upload images and apply sophisticated AI-powered transformations with minimal technical knowledge.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Implemented background removal with U2Net, super-resolution upscaling with ESRGAN, style transfer using AdaIN, and text-to-image generation with Stable Diffusion models.</span>
-                    </li>
-                    <li class="flex">
-                        <span class="mr-2">•</span>
-                        <span>Optimized the pipeline for efficiency, allowing multiple transformations to be applied sequentially while preserving image quality throughout the process.</span>
-                    </li>
+                    </div>
+                    <div class="mb-4">
+                    <h4 class="font-semibold mb-2 text-orange-600 dark:text-orange-400">Highlights:</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Created a comprehensive image editing application by integrating multiple open-source AI models.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Developed an intuitive <strong>Gradio</strong> interface that allows users to easily upload images.</span>
+                        </li>
+                        <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Implemented background removal, super-resolution upscaling, style transfer, and text-to-image generation.</span>
+                        </li>
                     </ul>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -1124,10 +1189,212 @@
         </div> 
 
 
+        <!-------------------Blogs section--------------------->
+        <section id="blogs" class="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-transparent transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <div class="inline-block mb-4">
+                        <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">
+                            Insights
+                        </span>
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+                        My
+                        <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                            Blogs
+                        </span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog 1: Embedding Models in RAG -->
+                    <div class="card-hover bg-gray-50 dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col transition-colors fade-in" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center">
+                            <i class="fas fa-layer-group text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">RAG</span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs">Dec 15, 2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Embedding Models in RAG Systems</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">
+                                In Retrieval-Augmented Generation (RAG), the quality of your <span class="font-semibold text-indigo-600 dark:text-indigo-400">embedding model</span> dictates the relevance of retrieved context. A superior embedding model captures semantic nuances better than keyword matching, directly impacting the LLM's ability to generate accurate and grounded responses.
+                            </p>
+                            <a href="javascript:void(0)" onclick="openBlog('embedding-models-rag')" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+                                Read Article <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog 2: Reasoning vs Non-Reasoning Models -->
+                    <div class="card-hover bg-gray-50 dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col transition-colors fade-in" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-brain text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">LLM Research</span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs">Dec 10, 2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reasoning vs. Non-Reasoning Models</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">
+                                Recent benchmarks show that <span class="font-semibold text-purple-600 dark:text-purple-400">reasoning models</span> (like o1 or specialized CoT models) significantly outperform standard LLMs on complex tasks requiring multi-step logic. While non-reasoning models excel at pattern matching, reasoning capabilities are essential for autonomous agents and complex problem-solving.
+                            </p>
+                            <a href="javascript:void(0)" onclick="openBlog('reasoning-vs-non-reasoning')" class="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                                Read Article <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog 3: Agentic Development Guidelines -->
+                    <div class="card-hover bg-gray-50 dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col transition-colors fade-in" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+                            <i class="fas fa-cogs text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-full">AI Agents</span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs">Nov 28, 2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Agentic Development Guidelines</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">
+                                Building reliable <span class="font-semibold text-emerald-600 dark:text-emerald-400">AI Agents</span> requires a shift from prompt engineering to system engineering. Key guidelines include: defining clear tools, implementing robust error handling loops, ensuring state management, and designing for observability to debug agent thought processes effectively.
+                            </p>
+                            <a href="javascript:void(0)" onclick="openBlog('agentic-development')" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-semibold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+                                Read Article <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Modal -->
+        <div id="blogModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeBlog()"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white dark:bg-dark-card rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                    <div class="bg-white dark:bg-dark-card px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white" id="modal-title">Blog Post</h3>
+                                    <button onclick="closeBlog()" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                                        <span class="sr-only">Close</span>
+                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div id="blogContent" class="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+                                    <!-- Content will be injected here -->
+                                    <div class="flex justify-center py-10">
+                                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeBlog()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------Contact section--------------------->
+        <section id="contact" class="w-full px-4 sm:px-6 lg:px-8 py-20 bg-transparent transition-colors relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <div class="inline-block mb-4">
+                        <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full">
+                            Get in Touch
+                        </span>
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">Let's Work Together</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Email Card -->
+                    <a href="mailto:sumanthnts@gmail.com" class="group card-hover bg-white dark:bg-dark-card rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Email Me</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">For project inquiries</p>
+                        <span class="text-red-500 dark:text-red-400 font-semibold group-hover:underline">sumanthneechadi@gmail.com</span>
+                    </a>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://www.linkedin.com/in/sumantha-nts/" target="_blank" rel="noopener noreferrer" class="group card-hover bg-white dark:bg-dark-card rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">LinkedIn</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Let's connect professionally</p>
+                        <span class="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">View Profile</span>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/sumantha-NTS" target="_blank" rel="noopener noreferrer" class="group card-hover bg-white dark:bg-dark-card rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center text-white text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">GitHub</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Check out my code</p>
+                        <span class="text-gray-700 dark:text-gray-300 font-semibold group-hover:underline">View Repositories</span>
+                    </a>
+
+                    <!-- Location Card -->
+                    <div class="group card-hover bg-white dark:bg-dark-card rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Location</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Bangalore, India</p>
+                        <span class="text-green-500 font-semibold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Open to Opportunities
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-------------------Footer section--------------------->
-        <footer class="w-full px-[12%] py-6 bg-gray-100 mt-16">
-            <div class="text-center sm:flex justify-between border-t border-gray-300 items-center pt-4">
-                <p class="text-gray-600 text-sm">© 2025 Sumantha NTS. All rights reserved.</p>
+        <!-------------------Footer section--------------------->
+        <footer class="w-full bg-white dark:bg-dark-card border-t border-gray-100 dark:border-gray-700 mt-0 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <!-- Brand & Tagline -->
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">Sumantha NTS</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Building intelligent solutions for tomorrow.</p>
+                        <p class="text-gray-400 dark:text-gray-500 text-xs">
+                            &copy; 2025 Sumantha NTS. All rights reserved.
+                        </p>
+                    </div>
+
+                    <!-- Back to Top -->
+                    <div class="flex flex-col items-center md:items-end justify-center">
+                        <a href="#top" class="group flex items-center gap-2 px-6 py-3 bg-gray-50 dark:bg-gray-800 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all">
+                            <span class="text-gray-600 dark:text-gray-300 font-medium group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Back to Top</span>
+                            <i class="fas fa-arrow-up text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </footer>
 
@@ -1186,14 +1453,14 @@
             });
 
             const cardsData = [
-            { title: "Programming", gradient: "from-[#007CF0] to-[#00DFD8]", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4", id: "ratings-green" },
-            { title: "Frameworks", gradient: "from-[#7928CA] to-[#FF0080]", icon: "M3 3h18v18H3V3z", id: "ratings-blue" },
-            { title: "Data Science", gradient: "from-[#FF4D4D] to-[#F9CB28]", icon: "M3 3h18v18H3V3z", id: "ratings-indigo" },
-            { title: "Generative AI", gradient: "from-[#00C9FF] to-[#92FE9D]", icon: "M12 6v6l4 2", id: "ratings-purple-ai" },
-            { title: "Tools & Ops", gradient: "from-[#FC466B] to-[#3F5EFB]", icon: "M12 6V4m0 2a2 2 0 100 4", id: "ratings-yellow-red" },
-            { title: "Cloud", gradient: "from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]", icon: "M3 15a4 4 0 014-4h10a4 4 0 010 8H7a4 4 0 01-4-4z", id: "ratings-cloud" },
-            { title: "Database", gradient: "from-[#8360c3] to-[#2ebf91]", icon: "M12 5a9 3 0 019 3v8a9 3 0 01-18 0V8a9 3 0 019-3z", id: "ratings-database" },
-            { title: "Soft Skills & Growth", gradient: "from-[#FF6A00] to-[#EE0979]", icon: "M5 13l4 4L19 7", id: "ratings-soft" }
+            { title: "Programming", gradient: "from-[#007CF0] to-[#00DFD8]", iconClass: "fas fa-code", id: "ratings-green" },
+            { title: "Frameworks", gradient: "from-[#7928CA] to-[#FF0080]", iconClass: "fas fa-layer-group", id: "ratings-blue" },
+            { title: "Data Science", gradient: "from-[#FF4D4D] to-[#F9CB28]", iconClass: "fas fa-chart-bar", id: "ratings-indigo" },
+            { title: "Generative AI", gradient: "from-[#00C9FF] to-[#92FE9D]", iconClass: "fas fa-brain", id: "ratings-purple-ai" },
+            { title: "Tools & Ops", gradient: "from-[#FC466B] to-[#3F5EFB]", iconClass: "fas fa-tools", id: "ratings-yellow-red" },
+            { title: "Cloud", gradient: "from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]", iconClass: "fas fa-cloud", id: "ratings-cloud" },
+            { title: "Database", gradient: "from-[#8360c3] to-[#2ebf91]", iconClass: "fas fa-database", id: "ratings-database" },
+            { title: "Soft Skills & Growth", gradient: "from-[#FF6A00] to-[#EE0979]", iconClass: "fas fa-users", id: "ratings-soft" }
             ];
 
             const skillsData = {
@@ -1249,14 +1516,14 @@
 
             cardsData.forEach((card, i) => {
             const div = document.createElement("div");
-            div.className = `card card-hover flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl shadow p-6 border border-gray-100 fade-in snap-start`;
+            div.className = `card card-hover flex-shrink-0 w-80 sm:w-96 bg-white dark:bg-dark-card rounded-2xl shadow p-6 border border-gray-100 dark:border-gray-700 fade-in snap-start transition-colors`;
             div.dataset.gradient = card.gradient;
             div.innerHTML = `
-                <div class="flex items-center gap-4 mb-6 border-b pb-4 border-gray-100">
+                <div class="flex items-center gap-4 mb-6 border-b pb-4 border-gray-100 dark:border-gray-700">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-white shadow-md">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${card.icon}"/></svg>
+                    <i class="${card.iconClass} text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900">${card.title}</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">${card.title}</h3>
                 </div>
                 <ul id="${card.id}" class="space-y-6"></ul>
             `;
@@ -1278,9 +1545,9 @@
                 const pct = Math.round((s.rating / 5) * 100);
                 return `<li class="flex flex-col">
                     <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-semibold text-gray-700">${s.name}</span>
+                    <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">${s.name}</span>
                     </div>
-                    <div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${color};"></div></div>
+                    <div class="progress-track dark:bg-gray-700"><div class="progress-fill" style="width:${pct}%;background:${color};"></div></div>
                 </li>`;
                 }).join("");
             }
